@@ -16,12 +16,17 @@ export default function BrandLink(props) {
     const {
         color,
         className,
+        target = '_blank',
         ...rest
     } = props;
 
     const classes = useStyles(props);
 
     return (
-        <Link className={classnames(className, classes.root)} {...rest} />
+        <Link
+            target={target}
+            className={classnames(className, classes.root)}
+            {...rest}
+        />
     )
 }

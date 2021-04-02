@@ -9,11 +9,13 @@ import { BurgerIcon } from 'svgComponents/BurgerIcon';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DialogCustom from 'components/DialogCustom';
 import MenuNavBarMobile from 'components/MenuNavBarMobile';
-import {Enter} from "svgComponents/Enter";
-import {Register} from "svgComponents/Register";
-import {LkImageButton} from "svgComponents/LkImageButton";
+import { Enter } from "svgComponents/Enter";
+import { Register } from "svgComponents/Register";
+import { LkImageButton } from "svgComponents/LkImageButton";
 import obrazovanieLogo from 'images/obrazovanieLogo.png'
 import { yaTarget } from 'utils/yaTarget';
+import Button from 'UI/Button';
+import BrandLink from 'UI/BrandLink/BrandLink';
 
 const Navbar = () => {
     const c = useNavbarStyles();
@@ -23,31 +25,23 @@ const Navbar = () => {
     const isMobile = useMediaQuery('(max-width:800px)');
     const [openDialog, setOpenDialog] = useState(false);
 
-    const mainPage = () =>  {
+    const mainPage = () => {
         return ['/', '/main'].includes(pathname)
     };
 
     const buttonsVisible = () => {
-        if(!mainPage()) {
+        if (!mainPage()) {
             return !pathname.includes('signin') ?
-                <Link to="/auth/signin" style={{textDecoration: 'none'}}>
-                    <div className={c.button}>
-                        <div className={c.buttonInner} />
-                        <div className={c.buttonLong} />
-                        <span>Вход</span>
-                    </div>
-                </Link> :
-                <Link to="/auth/signup" style={{textDecoration: 'none'}}>
-                    <div className={c.button}
-                        onClick={() => {
-                            yaTarget('registration')
-                        }}
-                    >
-                        <div className={c.buttonInner} />
-                        <div className={c.buttonLong} />
-                        <span>Регистрация</span>
-                    </div>
-                </Link>
+                <BrandLink to="/auth/signin">
+                    <Button color='brandGreen'>
+                        Вход
+                    </Button>
+                </BrandLink> :
+                <BrandLink to="/auth/signup">
+                    <Button color='brandGreen' onClick={() => yaTarget('registration')}>
+                        Регистрация
+                    </Button>
+                </BrandLink>
         } else {
             return (
                 <>
@@ -77,7 +71,7 @@ const Navbar = () => {
                 <div className={`${c.between} between`} >
                     <div className={'flex centered'}>
                         <Link to={'/'} >
-                            <Logo color={mainPage() ? '#FF7271' : undefined}/>
+                            <Logo color={mainPage() ? '#FF7271' : undefined} />
                         </Link>
                         {mainPage() && (
                             <Link to={'/'} >
@@ -93,7 +87,7 @@ const Navbar = () => {
                                     {
                                         !isMobile ?
                                             <>
-                                                { buttonsVisible() }
+                                                {buttonsVisible()}
                                             </> :
                                             mainPage() ?
                                                 <IconButton
@@ -110,7 +104,7 @@ const Navbar = () => {
                                                 to="/lk"
                                                 className={c.blueLink}
                                             >
-                                                <LkImageButton/>
+                                                <LkImageButton />
                                             </Link> : null
                                     }
                                 </>

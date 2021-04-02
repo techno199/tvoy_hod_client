@@ -2,18 +2,18 @@ import React from 'react'
 import MuiButton from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core';
 import { Loader } from 'UI/Loader';
-
+import PropTypes from 'prop-types'
 
 const UIKitButton = withStyles(theme => ({
     root: {
         boxShadow: 'none',
         height: 50,
         color: '#fff',
+        borderRadius: props => props.shape === 'rounded' ? 22 : 0,
         backgroundColor: props => theme.brandColors[props.color]?.main || theme.brandColors.brandBlue.main,
         textTransform: 'none',
         fontSize: 18,
         fontWeight: 400,
-        borderRadius: 22,
         padding: '10px 40px',
         lineHeight: 1.5,
         '&:hover': {
@@ -29,17 +29,10 @@ const UIKitButton = withStyles(theme => ({
         backgroundColor: 'transparent !important',
         border: '1px solid #FF7271',
     },
-}))(MuiButton);
-
-/**
- * @method Button -Возвращает стилизованную кнопку из UIKit
- * @param {*} children -Содержимое кнопки 
- * @param {String | Number} width - ширина. По умолчанию `auto`
- * @param {Boolean} loader - лоадер внутри кнопки
- * 
- * Поддерживает любые параметры Button из Material-UI
- * - [Button](https://material-ui.com/components/buttons/)
- */
+}))(props => {
+    const { color, ...rest } = props;
+    return <MuiButton color='default' {...rest}  />
+});
 
 const Button = ({
     children,
@@ -55,6 +48,11 @@ const Button = ({
     )
 }
 
+Button.propTypes = {
+    /** Отображает лоадер вместо children */
+    loader: PropTypes.bool,
+    shape: PropTypes.oneOf(['default', 'rounded'])
+}
 
 export default Button
 

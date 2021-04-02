@@ -1,11 +1,12 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import headerFooterFon from 'images/headerFooterFon.svg';
+import { theme } from 'UI/themeInstance';
 
 export const useStyles = makeStyles({
     footer: {
-        background: `url(${headerFooterFon}) repeat-x left bottom #3A4699`,
+        background: theme.brandColors.blackGray.main,
         width: '100%',
-        height: '118px',
+        height: '169px',
         flex: '0 0 auto',
         display: 'flex',
         alignItems: 'center',
@@ -68,18 +69,26 @@ export const useStyles = makeStyles({
     },
     title: {
         fontFamily: 'Inter',
-        color: 'white',
+        color: '#fff !important',
         opacity: '.5',
-        fontSize: '16px',
         lineHeight: '140%',
         marginBottom: 8
     },
+    subtitle: {
+        fontFamily: theme.typography.fontFamily,
+        color: '#fff !important',
+        opacity: .5
+    },
+    subtitleUnderline: {
+        paddingBottom: 4,
+        borderBottom: `1px solid ${fade('#fff', .2)}`
+    },
     link: {
         fontSize: '20px',
-        color: 'white',
+        color: theme.brandColors.brandGreen.main,
         textDecoration:'none',
         paddingBottom: 4,
-        borderBottom: '1px solid rgba(255, 255, 255, .4)'
+        borderBottom: `1px solid ${fade(theme.brandColors.brandGreen.main, .4)}`
     },
     social: {
         display: 'flex',

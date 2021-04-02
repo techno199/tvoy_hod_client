@@ -1,9 +1,8 @@
 import { makeStyles } from "@material-ui/core";
-import headerFooterFon from 'images/headerFooterFon.svg';
 
 export const useNavbarStyles = makeStyles(theme => ({
     navbarWrapper:{
-        background: `#3A4699 url(${headerFooterFon}) repeat-x left top`,
+        background: theme.brandColors.blackGray.main,
         flex: '0 0 auto',
         height: 100,
         width: '100%',

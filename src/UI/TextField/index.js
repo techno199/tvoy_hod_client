@@ -56,11 +56,12 @@ const useStylesReddit = makeStyles((theme) => ({
 }));
 
 function UIKitTextField(props) {
-    const { underline, capitalize, inputProps } = props;
+    const { underline, capitalize, inputProps, ...rest } = props;
     const classes = useStylesReddit({ capitalize, underline });
 
     return (
         <MuiTextField
+            {...rest}
             inputProps={{
                 autoComplete: 'off'
             }}
@@ -69,7 +70,6 @@ function UIKitTextField(props) {
                 classes,
                 disableUnderline: true
             }}
-            {...props}
         />
     )
 }
@@ -95,9 +95,7 @@ const TextField = ({
     code,
     phoneMask,
     date,
-    capitalize,
     type,
-    underline = false,
     ...params
 }) => {
 
@@ -152,8 +150,6 @@ const TextField = ({
             onBlur={handleBlur}
             data-code={code ?? false}
             type={newType}
-            capitalize={capitalize}
-            underline={underline}
         />
     )
 };

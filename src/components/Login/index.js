@@ -78,6 +78,7 @@ export const Login = () => {
                 noteLink={<BrandLink to='/auth/forgot'>Забыли пароль?</BrandLink>}
             >
                 <TextField
+                    autoFocus
                     required
                     underline
                     name='email'
@@ -109,6 +110,8 @@ export const Login = () => {
             <Button
                 fullWidth
                 type='submit'
+                shape='rounded'
+                color='brandGreen'
                 disabled={isFetching}
                 loader={isFetching}
             >

@@ -63,6 +63,7 @@ export const EmailEnter = ({
                 underfield={!!error && <div>Уже зарегистрированы?&nbsp;<SpanLink onClick={handleRedirect} >Войти</SpanLink></div>}
             >
                 <TextField
+                    autoFocus
                     value={email}
                     name='email'
                     placeholder=' '
