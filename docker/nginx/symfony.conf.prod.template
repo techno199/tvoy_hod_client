@@ -1,0 +1,25 @@
+server {
+    listen 80;
+
+    server_name ${DOCKER_DOMAIN};
+    root /var/www/symfony/public;
+
+    location / {
+        try_files ${DOLLAR}uri @rewriteapphttp;
+    }
+
+    location @rewriteapphttp {
+        rewrite ^(.*)${DOLLAR} /index.php/${DOLLAR}1 last;
+    }
+
+    location ~ ^/index\.php(/|${DOLLAR}) {
+        fastcgi_pass php-upstream;
+        fastcgi_split_path_info ^(.+\.php)(/.*)${DOLLAR};
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME ${DOLLAR}document_root${DOLLAR}fastcgi_script_name;
+        fastcgi_param HTTPS off;
+    }
+
+    error_log /var/log/nginx/symfony_error.log;
+    access_log /var/log/nginx/symfony_access.log;
+}

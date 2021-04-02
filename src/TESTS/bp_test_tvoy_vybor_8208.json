@@ -1,0 +1,1002 @@
+{
+  "format": "1.6.5",
+  "name": "20210305-140818-8208",
+  "attributes": {
+    "title": "Твой выбор",
+    "blank": false,
+    "annotation": "",
+    "instruction": {
+      "enabled": true,
+      "content": "Здравствуй!<br /><br />Предлагаем тебе подумать над тем, что бы ты хотел(а) увидеть в своей будущей профессии. <br />Ответь всего на 5 вопросов, выбрав в каждом не более 5-6 вариантов ответа.<br /><br />Приготовься к работе!",
+      "repeatable": true,
+      "timer": {
+        "enabled": false,
+        "limit": 300
+      }
+    },
+    "summary": {
+      "enabled": false,
+      "content": "",
+      "repeatable": true,
+      "timer": {
+        "enabled": false,
+        "limit": 300
+      }
+    }
+  },
+  "metadata": {
+    "author": "",
+    "annotation": "",
+    "comment": "",
+    "version": {
+      "number": "2.0b",
+      "date": "03.03.2021",
+      "comment": "Тест для проекта БП: примерочная профессий\nДобавлен новый вызов Образовывай\nДобавлен вопрос про предметы труда"
+    }
+  },
+  "subtests": {
+    "counter": 5,
+    "items": {
+      "T1": {
+        "title": "Предметы",
+        "type": "multiple",
+        "length": 1,
+        "memorize": false,
+        "randomization": {
+          "questions": false,
+          "answers": false,
+          "sequence": {
+            "enabled": false,
+            "categories": ""
+          }
+        },
+        "constraints": {
+          "subtestTime": {
+            "enabled": false,
+            "limit": 600
+          },
+          "questionTime": {
+            "enabled": false,
+            "limit": 60
+          },
+          "questionsReturns": {
+            "enabled": false,
+            "limit": 3
+          },
+          "multipleAnswer": {
+            "neutrals": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            },
+            "positives": {
+              "enabled": true,
+              "answersMin": 2,
+              "answersMax": 6
+            },
+            "negatives": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            }
+          },
+          "subtestNeutralAnswers": {
+            "enabled": false,
+            "warningPercent": 50,
+            "restartPercent": 75
+          }
+        },
+        "sliders": {
+          "poles": 2,
+          "positions": 5
+        },
+        "feedback": {
+          "enabled": false,
+          "scale": "auto",
+          "forward": false,
+          "delay": 8,
+          "messages": {
+            "enabled": true,
+            "extended": false,
+            "valid": {
+              "enabled": true,
+              "header": "Правильный ответ",
+              "content": "Вы ответили правильно.",
+              "color": "",
+              "background": "#eeffcc"
+            },
+            "invalid": {
+              "enabled": true,
+              "header": "Неправильный ответ",
+              "content": "Вы ответили неправильно.",
+              "color": "",
+              "background": "#ffddcc"
+            },
+            "unspecified": {
+              "enabled": false,
+              "header": "Ключ не задан",
+              "content": "Для задания не задан ключ.",
+              "color": "",
+              "background": ""
+            }
+          },
+          "indicators": {
+            "enabled": true,
+            "valid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#44aa00"
+              },
+              "progress": {
+                "display": true,
+                "color": "#44aa00"
+              }
+            },
+            "invalid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#ff2222"
+              },
+              "progress": {
+                "display": true,
+                "color": "#ff2222"
+              }
+            }
+          },
+          "answers": {
+            "enabled": true,
+            "reveal": false,
+            "valid": {
+              "highlight": true,
+              "color": "#44aa00"
+            },
+            "invalid": {
+              "highlight": true,
+              "color": "#ff2222"
+            }
+          }
+        },
+        "instruction": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "summary": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "questions": {
+          "counter": 4,
+          "items": {
+            "Q1": {
+              "type": "multiple",
+              "text": "Отметь, какие предметы тебя в большей степени привлекают (можно выбрать от 2 до 6 предметов из 13)",
+              "answers": {
+                "A1": {
+                  "text": "Русский язык"
+                },
+                "A2": {
+                  "text": "Литература"
+                },
+                "A3": {
+                  "text": "История"
+                },
+                "A4": {
+                  "text": "Математика"
+                },
+                "A5": {
+                  "text": "Информатика"
+                },
+                "A6": {
+                  "text": "Физика"
+                },
+                "A7": {
+                  "text": "Биология"
+                },
+                "A8": {
+                  "text": "Химия"
+                },
+                "A9": {
+                  "text": "География"
+                },
+                "A10": {
+                  "text": "Иностранный язык"
+                },
+                "A11": {
+                  "text": "Обществознание"
+                },
+                "A12": {
+                  "text": "Искусство (музыка, изобразительное искусство, МХК)"
+                },
+                "A13": {
+                  "text": "Технология"
+                }
+              },
+              "display": {},
+              "feedback": {
+                "enabled": false,
+                "answers": {}
+              }
+            }
+          },
+          "order": [
+            "Q1"
+          ]
+        },
+        "deferred": false
+      },
+      "T2": {
+        "title": "Личностные качества",
+        "type": "multiple",
+        "length": 1,
+        "memorize": false,
+        "randomization": {
+          "questions": false,
+          "answers": false,
+          "sequence": {
+            "enabled": false,
+            "categories": ""
+          }
+        },
+        "constraints": {
+          "subtestTime": {
+            "enabled": false,
+            "limit": 600
+          },
+          "questionTime": {
+            "enabled": false,
+            "limit": 60
+          },
+          "questionsReturns": {
+            "enabled": false,
+            "limit": 3
+          },
+          "multipleAnswer": {
+            "neutrals": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            },
+            "positives": {
+              "enabled": true,
+              "answersMin": 2,
+              "answersMax": 6
+            },
+            "negatives": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            }
+          },
+          "subtestNeutralAnswers": {
+            "enabled": false,
+            "warningPercent": 50,
+            "restartPercent": 75
+          }
+        },
+        "sliders": {
+          "poles": 2,
+          "positions": 5
+        },
+        "feedback": {
+          "enabled": false,
+          "scale": "auto",
+          "forward": false,
+          "delay": 8,
+          "messages": {
+            "enabled": true,
+            "extended": false,
+            "valid": {
+              "enabled": true,
+              "header": "Правильный ответ",
+              "content": "Вы ответили правильно.",
+              "color": "",
+              "background": "#eeffcc"
+            },
+            "invalid": {
+              "enabled": true,
+              "header": "Неправильный ответ",
+              "content": "Вы ответили неправильно.",
+              "color": "",
+              "background": "#ffddcc"
+            },
+            "unspecified": {
+              "enabled": false,
+              "header": "Ключ не задан",
+              "content": "Для задания не задан ключ.",
+              "color": "",
+              "background": ""
+            }
+          },
+          "indicators": {
+            "enabled": true,
+            "valid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#44aa00"
+              },
+              "progress": {
+                "display": true,
+                "color": "#44aa00"
+              }
+            },
+            "invalid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#ff2222"
+              },
+              "progress": {
+                "display": true,
+                "color": "#ff2222"
+              }
+            }
+          },
+          "answers": {
+            "enabled": true,
+            "reveal": false,
+            "valid": {
+              "highlight": true,
+              "color": "#44aa00"
+            },
+            "invalid": {
+              "highlight": true,
+              "color": "#ff2222"
+            }
+          }
+        },
+        "instruction": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "summary": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "questions": {
+          "counter": 3,
+          "items": {
+            "Q1": {
+              "type": "multiple",
+              "text": "Отметь, какие личностные качества наиболее свойственны тебе (можно выбрать от 2 до 6 качеств из 10)",
+              "answers": {
+                "A1": {
+                  "text": "Логическое мышление"
+                },
+                "A2": {
+                  "text": "Креативность (изобретательность)"
+                },
+                "A3": {
+                  "text": "Внимательность"
+                },
+                "A4": {
+                  "text": "Общительность"
+                },
+                "A5": {
+                  "text": "Активность, инициативность"
+                },
+                "A6": {
+                  "text": "Организованность"
+                },
+                "A7": {
+                  "text": "Стрессоустойчивость"
+                },
+                "A8": {
+                  "text": "Ответственность, самостоятельность"
+                },
+                "A9": {
+                  "text": "Дружелюбие"
+                },
+                "A10": {
+                  "text": "Порядочность"
+                }
+              },
+              "display": {},
+              "feedback": {
+                "enabled": false,
+                "answers": {}
+              }
+            }
+          },
+          "order": [
+            "Q1"
+          ]
+        },
+        "deferred": false
+      },
+      "T3": {
+        "title": "Условия работы",
+        "type": "multiple",
+        "length": 1,
+        "memorize": false,
+        "randomization": {
+          "questions": false,
+          "answers": false,
+          "sequence": {
+            "enabled": false,
+            "categories": ""
+          }
+        },
+        "constraints": {
+          "subtestTime": {
+            "enabled": false,
+            "limit": 600
+          },
+          "questionTime": {
+            "enabled": false,
+            "limit": 60
+          },
+          "questionsReturns": {
+            "enabled": false,
+            "limit": 3
+          },
+          "multipleAnswer": {
+            "neutrals": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            },
+            "positives": {
+              "enabled": true,
+              "answersMin": 2,
+              "answersMax": 6
+            },
+            "negatives": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            }
+          },
+          "subtestNeutralAnswers": {
+            "enabled": false,
+            "warningPercent": 50,
+            "restartPercent": 75
+          }
+        },
+        "sliders": {
+          "poles": 2,
+          "positions": 5
+        },
+        "feedback": {
+          "enabled": false,
+          "scale": "auto",
+          "forward": false,
+          "delay": 8,
+          "messages": {
+            "enabled": true,
+            "extended": false,
+            "valid": {
+              "enabled": true,
+              "header": "Правильный ответ",
+              "content": "Вы ответили правильно.",
+              "color": "",
+              "background": "#eeffcc"
+            },
+            "invalid": {
+              "enabled": true,
+              "header": "Неправильный ответ",
+              "content": "Вы ответили неправильно.",
+              "color": "",
+              "background": "#ffddcc"
+            },
+            "unspecified": {
+              "enabled": false,
+              "header": "Ключ не задан",
+              "content": "Для задания не задан ключ.",
+              "color": "",
+              "background": ""
+            }
+          },
+          "indicators": {
+            "enabled": true,
+            "valid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#44aa00"
+              },
+              "progress": {
+                "display": true,
+                "color": "#44aa00"
+              }
+            },
+            "invalid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#ff2222"
+              },
+              "progress": {
+                "display": true,
+                "color": "#ff2222"
+              }
+            }
+          },
+          "answers": {
+            "enabled": true,
+            "reveal": false,
+            "valid": {
+              "highlight": true,
+              "color": "#44aa00"
+            },
+            "invalid": {
+              "highlight": true,
+              "color": "#ff2222"
+            }
+          }
+        },
+        "instruction": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "summary": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "questions": {
+          "counter": 2,
+          "items": {
+            "Q1": {
+              "type": "multiple",
+              "text": "Отметь, какие условия работы в большей степени тебе подходят (можно выбрать от 2 до 6 вариантов из 10)",
+              "answers": {
+                "A1": {
+                  "text": "Готов(а) следовать четким правилам"
+                },
+                "A2": {
+                  "text": "Хочу фриланс и кеды (свободный график, нет дресс-кода и прочих ограничений)"
+                },
+                "A3": {
+                  "text": "Хочу много путешествовать (частые разъезды, командировки и т.п.)"
+                },
+                "A4": {
+                  "text": "Хочу работать с клиентами (учениками, партнерами, пациентами)"
+                },
+                "A5": {
+                  "text": "Хочу работать в команде"
+                },
+                "A6": {
+                  "text": "Хочу быть на публике"
+                },
+                "A7": {
+                  "text": "Готов(а) к экстремальной работе"
+                },
+                "A8": {
+                  "text": "Хочу работать на природе"
+                },
+                "A9": {
+                  "text": "Хочу работать руками"
+                },
+                "A10": {
+                  "text": "Хочу работать с техникой"
+                }
+              },
+              "display": {},
+              "feedback": {
+                "enabled": false,
+                "answers": {}
+              }
+            }
+          },
+          "order": [
+            "Q1"
+          ]
+        },
+        "deferred": false
+      },
+      "T4": {
+        "title": "Цели и ценности",
+        "type": "multiple",
+        "length": 1,
+        "memorize": false,
+        "randomization": {
+          "questions": false,
+          "answers": false,
+          "sequence": {
+            "enabled": false,
+            "categories": ""
+          }
+        },
+        "constraints": {
+          "subtestTime": {
+            "enabled": false,
+            "limit": 600
+          },
+          "questionTime": {
+            "enabled": false,
+            "limit": 60
+          },
+          "questionsReturns": {
+            "enabled": false,
+            "limit": 3
+          },
+          "multipleAnswer": {
+            "neutrals": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            },
+            "positives": {
+              "enabled": true,
+              "answersMin": 2,
+              "answersMax": 6
+            },
+            "negatives": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            }
+          },
+          "subtestNeutralAnswers": {
+            "enabled": false,
+            "warningPercent": 50,
+            "restartPercent": 75
+          }
+        },
+        "sliders": {
+          "poles": 2,
+          "positions": 5
+        },
+        "feedback": {
+          "enabled": false,
+          "scale": "auto",
+          "forward": false,
+          "delay": 8,
+          "messages": {
+            "enabled": true,
+            "extended": false,
+            "valid": {
+              "enabled": true,
+              "header": "Правильный ответ",
+              "content": "Вы ответили правильно.",
+              "color": "",
+              "background": "#eeffcc"
+            },
+            "invalid": {
+              "enabled": true,
+              "header": "Неправильный ответ",
+              "content": "Вы ответили неправильно.",
+              "color": "",
+              "background": "#ffddcc"
+            },
+            "unspecified": {
+              "enabled": false,
+              "header": "Ключ не задан",
+              "content": "Для задания не задан ключ.",
+              "color": "",
+              "background": ""
+            }
+          },
+          "indicators": {
+            "enabled": true,
+            "valid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#44aa00"
+              },
+              "progress": {
+                "display": true,
+                "color": "#44aa00"
+              }
+            },
+            "invalid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#ff2222"
+              },
+              "progress": {
+                "display": true,
+                "color": "#ff2222"
+              }
+            }
+          },
+          "answers": {
+            "enabled": true,
+            "reveal": false,
+            "valid": {
+              "highlight": true,
+              "color": "#44aa00"
+            },
+            "invalid": {
+              "highlight": true,
+              "color": "#ff2222"
+            }
+          }
+        },
+        "instruction": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "summary": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "questions": {
+          "counter": 1,
+          "items": {
+            "Q1": {
+              "type": "multiple",
+              "text": "Отметь, какие цели и ценности в большей степени близки тебе (можно выбрать от 2 до 6 вариантов из 9)",
+              "answers": {
+                "A1": {
+                  "text": "Слава, известность, признание"
+                },
+                "A2": {
+                  "text": "Помощь людям (альтруизм)"
+                },
+                "A3": {
+                  "text": "Свобода и независимость"
+                },
+                "A4": {
+                  "text": "Творчество"
+                },
+                "A5": {
+                  "text": "Саморазвитие"
+                },
+                "A6": {
+                  "text": "Стремление к новому"
+                },
+                "A7": {
+                  "text": "Сохранение традиций"
+                },
+                "A8": {
+                  "text": "Красота природы и искусства"
+                },
+                "A9": {
+                  "text": "Благополучие страны (безопасность и процветание)"
+                }
+              },
+              "display": {},
+              "feedback": {
+                "enabled": false,
+                "answers": {}
+              }
+            }
+          },
+          "order": [
+            "Q1"
+          ]
+        },
+        "deferred": false
+      },
+      "T6": {
+        "title": "Предметы труда",
+        "type": "multiple",
+        "length": 1,
+        "memorize": false,
+        "randomization": {
+          "questions": false,
+          "answers": false,
+          "sequence": {
+            "enabled": false,
+            "categories": ""
+          }
+        },
+        "constraints": {
+          "subtestTime": {
+            "enabled": false,
+            "limit": 600
+          },
+          "questionTime": {
+            "enabled": false,
+            "limit": 60
+          },
+          "questionsReturns": {
+            "enabled": true,
+            "limit": 3
+          },
+          "multipleAnswer": {
+            "neutrals": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            },
+            "positives": {
+              "enabled": true,
+              "answersMin": 2,
+              "answersMax": 6
+            },
+            "negatives": {
+              "enabled": false,
+              "answersMin": 0,
+              "answersMax": 0
+            }
+          },
+          "subtestNeutralAnswers": {
+            "enabled": false,
+            "warningPercent": 50,
+            "restartPercent": 75
+          }
+        },
+        "sliders": {
+          "poles": 2,
+          "positions": 5
+        },
+        "feedback": {
+          "enabled": false,
+          "scale": "",
+          "forward": false,
+          "delay": 8,
+          "messages": {
+            "enabled": true,
+            "extended": false,
+            "valid": {
+              "enabled": true,
+              "header": "Правильный ответ",
+              "content": "Вы ответили правильно.",
+              "color": "",
+              "background": "#eeffcc"
+            },
+            "invalid": {
+              "enabled": true,
+              "header": "Неправильный ответ",
+              "content": "Вы ответили неправильно.",
+              "color": "",
+              "background": "#ffddcc"
+            },
+            "unspecified": {
+              "enabled": true,
+              "header": "Ключ не задан",
+              "content": "Для задания не задан ключ.",
+              "color": "",
+              "background": ""
+            }
+          },
+          "indicators": {
+            "enabled": false,
+            "valid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#44aa00"
+              },
+              "progress": {
+                "display": true,
+                "color": "#44aa00"
+              }
+            },
+            "invalid": {
+              "enabled": true,
+              "counter": {
+                "display": true,
+                "color": "#ff2222"
+              },
+              "progress": {
+                "display": true,
+                "color": "#ff2222"
+              }
+            }
+          },
+          "answers": {
+            "enabled": true,
+            "reveal": false,
+            "valid": {
+              "highlight": true,
+              "color": "#44aa00"
+            },
+            "invalid": {
+              "highlight": true,
+              "color": "#ff2222"
+            }
+          }
+        },
+        "instruction": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "summary": {
+          "enabled": false,
+          "content": "",
+          "repeatable": true,
+          "timer": {
+            "enabled": false,
+            "limit": 300
+          }
+        },
+        "questions": {
+          "counter": 1,
+          "items": {
+            "Q1": {
+              "type": "multiple",
+              "text": "Отметь, с чем тебе хотелось бы работать в будущем (можно выбрать от 2 до 6 вариантов из 9)",
+              "answers": {
+                "A1": {
+                  "text": "Общество в целом: Социум, финансовые, экономические, политические системы"
+                },
+                "A2": {
+                  "text": "Конкретные взрослые и дети (лечение, карьера, обучение, отношения, товары и услуги и т.п.)"
+                },
+                "A3": {
+                  "text": "Искусство (образы, переживания, эмоции)"
+                },
+                "A4": {
+                  "text": "Информация (данные, документы)"
+                },
+                "A5": {
+                  "text": "Наука (система идей, теории, идеологии)"
+                },
+                "A6": {
+                  "text": "Техника (машины, станки, приборы, технические системы)"
+                },
+                "A7": {
+                  "text": "Живая природа (человеческий организм, флора, фауна и т.п.)"
+                },
+                "A8": {
+                  "text": "Неживая природа (погода, космос, горные породы и т.п.)"
+                },
+                "A9": {
+                  "text": "Детали, материалы, элементы (анализ, синтез, обработка, переработка, сборка и т.п.)"
+                }
+              },
+              "display": {},
+              "feedback": {
+                "enabled": false,
+                "answers": {}
+              }
+            }
+          },
+          "order": [
+            "Q1"
+          ]
+        },
+        "deferred": false
+      }
+    },
+    "order": [
+      "T1",
+      "T6",
+      "T2",
+      "T3",
+      "T4"
+    ]
+  }
+}

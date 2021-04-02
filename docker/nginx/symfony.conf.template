@@ -1,0 +1,97 @@
+server {
+    listen 80;
+
+    server_name ${DOCKER_DOMAIN_TEST};
+    return 301 https://${DOLLAR}host:${DOCKER_NGINX_SSL_PORT}${DOLLAR}request_uri;
+}
+
+
+server {
+    listen 443 ssl;
+
+    server_name ${DOCKER_DOMAIN_TEST};
+    root /var/www/symfony/public;
+
+    ssl_certificate /etc/nginx/ssl/live/bolshajaperemena.ru/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/bolshajaperemena.ru/privkey.pem;
+    
+    include /etc/nginx/ssl/options-ssl-nginx.conf;
+    #генерируется через openssl dhparam -out dhparam.pem 4096
+    ssl_dhparam /etc/nginx/ssl/ssl-dhparams.pem;
+
+    location /.well-known {
+        root /var/www/symfony/public;
+    }
+
+    location /api {
+        proxy_ssl_server_name on;
+        proxy_pass https://${DOCKER_BACK_NGINX_IP_TEST}:${DOCKER_BACK_NGINX_PORT_TEST};
+        proxy_set_header Host ${DOLLAR}host;
+        proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+    }
+
+    location /_profiler {
+        proxy_ssl_server_name on;
+        proxy_pass https://${DOCKER_BACK_NGINX_IP_TEST}:${DOCKER_BACK_NGINX_PORT_TEST};
+        proxy_set_header Host ${DOLLAR}host;
+        proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+    }
+    
+    location / {
+        proxy_pass http://${DOCKER_NODEJS_IP_TEST}:${DOCKER_NODE_PORT_TEST};
+        proxy_set_header Host ${DOLLAR}host;
+        proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+    }
+
+
+    error_log /var/log/nginx/symfony_error.log;
+    access_log /var/log/nginx/symfony_access.log;
+}
+
+
+server {
+    listen 443 ssl;
+
+    server_name ${DOCKER_DOMAIN};
+    root /var/www/symfony/public;
+
+    
+    ssl_certificate /etc/nginx/ssl/live/bolshajaperemena.ru/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/bolshajaperemena.ru/privkey.pem;
+    
+    include /etc/nginx/ssl/options-ssl-nginx.conf;
+    #генерируется через openssl dhparam -out dhparam.pem 4096
+    ssl_dhparam /etc/nginx/ssl/ssl-dhparams.pem;
+
+    location /.well-known {
+        root /var/www/symfony/public;
+    }
+
+     location /_profiler {
+        proxy_ssl_server_name on;
+        proxy_pass https://${DOCKER_BACK_NGINX_IP}:${DOCKER_BACK_NGINX_PORT};
+        proxy_set_header Host ${DOLLAR}host;
+        proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+    }
+
+    location /api { 
+        proxy_pass https://${DOCKER_BACK_NGINX_IP}:${DOCKER_BACK_NGINX_PORT};
+        proxy_set_header Host ${DOLLAR}host;
+        proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+    }
+    
+     location / {
+        root /opt/front/;
+        index index.html index.htm;
+        try_files ${DOLLAR}uri /index.html =404;
+    }
+
+
+    error_log /var/log/nginx/symfony_error.log;
+    access_log /var/log/nginx/symfony_access.log;
+}

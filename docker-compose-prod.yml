@@ -1,0 +1,17 @@
+version: '3.5'
+
+#networks:
+#    default:
+#        external:
+#            name: docker_net
+
+services:
+    nodejs:
+        build:
+            context: ./docker/nodejs
+            args:
+                - APP_ENV=${APP_ENV}
+        volumes:
+            - ./:/app
+        ports:
+            - "${DOCKER_NODE_PORT}:3000"

@@ -1,0 +1,73 @@
+server {
+    listen 80;
+    server_name ${DOCKER_DOMAIN};
+    root /var/www/symfony/public;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location /map/wms/ {
+        #resolver 10.10.51.1;
+        #resolver dp.mosreg.ru;
+        proxy_pass http://int.rgis.mosreg.ru/wms/map01/stptomo2018$1$is_args$args;
+    }
+
+    location / {
+        try_files ${DOLLAR}uri @rewriteapphttp;
+    }
+
+    location @rewriteapphttp {
+        rewrite ^(.*)$ /index.php/$1 last;
+    }
+
+    location ~ ^/index\.php(/|$) {
+        fastcgi_pass php-upstream;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME ${DOLLAR}document_root${DOLLAR}fastcgi_script_name;
+        fastcgi_param HTTPS on;
+    }
+
+    error_log /var/log/nginx/symfony_error.log;
+    access_log /var/log/nginx/symfony_access.log;
+}
+
+server {
+    listen 443 ssl;
+
+    server_name ${DOCKER_DOMAIN};
+    root /var/www/symfony/public;
+
+    ssl_certificate /etc/nginx/ssl/live/vmeste.srvdev24.ru/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/vmeste.srvdev24.ru/privkey.pem;
+
+    include /etc/nginx/ssl/options-ssl-nginx.conf;
+    #генерируется через openssl dhparam -out dhparam.pem 4096
+    ssl_dhparam /etc/nginx/ssl/ssl-dhparams.pem;
+
+    location /map/wms/ {
+        #resolver 10.10.51.1;
+        #resolver dp.mosreg.ru;
+        proxy_pass http://int.rgis.mosreg.ru/wms/map01/stptomo2018$1$is_args$args;
+    }
+
+    location / {
+        try_files ${DOLLAR}uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+        rewrite ^(.*)$ /index.php/$1 last;
+    }
+
+    location ~ ^/index\.php(/|$) {
+        fastcgi_pass php-upstream;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME ${DOLLAR}document_root${DOLLAR}fastcgi_script_name;
+        fastcgi_param HTTPS on;
+    }
+
+    error_log /var/log/nginx/symfony_error.log;
+    access_log /var/log/nginx/symfony_access.log;
+}

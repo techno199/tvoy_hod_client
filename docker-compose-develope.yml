@@ -1,0 +1,47 @@
+version: '3.5'
+
+networks:
+    docker_net:
+        name: ${DOCKER_NETWORK_NAME}
+
+
+services:
+    front_nginx:
+        depends_on:
+            - nodejs
+        build:
+            context: ./docker/nginx
+        ports:
+            - "${DOCKER_NGINX_PORT}:80"
+            - "${DOCKER_NGINX_SSL_PORT}:443"
+        environment:
+            - DOCKER_DOMAIN=${DOCKER_DOMAIN}
+            - DOCKER_NGINX_SSL_PORT=${DOCKER_NGINX_SSL_PORT}
+            - DOCKER_PHP_IP=${DOCKER_PHP_IP}
+            - DOCKER_NODEJS_IP=${DOCKER_NODEJS_IP}
+            - DOCKER_BACK_NGINX_IP=${DOCKER_BACK_NGINX_IP}
+            - DOCKER_BACK_NGINX_PORT=${DOCKER_BACK_NGINX_PORT}
+        volumes:
+            - ./logs/nginx:/var/log/nginx:cached
+            - ./:/var/www/symfony:cached
+            - /etc/letsencrypt:/etc/nginx/ssl
+            - /opt/jenkins/workspace/front-release/build:/opt/front/
+            #- /etc/ssl/:/etc/nginx/ssl
+            #- /opt/repositories/upload:/var/www/symfony/public/upload
+            #- ./ssl/certbot/www:/var/www/certbot
+        networks:
+            - docker_net
+
+    nodejs:
+        build:
+            context: ./docker/nodejs
+            args:
+                - APP_ENV=${APP_ENV}
+        volumes:
+            - ./:/app
+        ports:
+            - "${DOCKER_NODE_PORT}:${DOCKER_NODE_PORT}"
+        environment:
+            - DOCKER_NODE_PORT=${DOCKER_NODE_PORT}
+        networks:
+            - docker_net

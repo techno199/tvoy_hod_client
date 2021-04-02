@@ -1,0 +1,15 @@
+logs/
+node_modules/
+build/
+*.log
+docker/nginx/symfony.conf
+docker/php-fpm/symfony.pool.conf
+
+.vscode
+./.vscode
+.env
+./.env
+.eslintcache
+./.eslintcache
+
+src/video/
