@@ -9,6 +9,7 @@ import { SpanLink } from 'UI/SpanLink'
 import TextField from 'UI/TextField'
 import Title from 'UI/Title'
 import { LkContext } from 'context/LkContext/LkContext';
+import BrandLink from 'UI/BrandLink/BrandLink'
 
 export const Login = () => {
 
@@ -72,12 +73,14 @@ export const Login = () => {
             </Title>
 
             <Fieldset
+                thin
                 title='Электронная почта'
-                noteLink={<SpanLink onClick={handleForgotClick} >Забыли пароль?</SpanLink>}
+                noteLink={<BrandLink to='/auth/forgot'>Забыли пароль?</BrandLink>}
             >
                 <TextField
-                    name='email'
                     required
+                    underline
+                    name='email'
                     placeholder=' '
                     error={errors}
                     fullWidth
@@ -88,6 +91,7 @@ export const Login = () => {
             </Fieldset>
 
             <Fieldset
+                thin
                 title='Пароль'
             >
                 <TextField
@@ -103,8 +107,8 @@ export const Login = () => {
             </Fieldset>
 
             <Button
+                fullWidth
                 type='submit'
-                width='100%'
                 disabled={isFetching}
                 loader={isFetching}
             >

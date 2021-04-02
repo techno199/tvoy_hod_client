@@ -7,6 +7,27 @@ export const theme = responsiveFontSizes(createMuiTheme({
         primary: {
             main: '#272C5B',
         },
+        error: {
+            light: '#FFDFDF',
+            main: '#F15053'
+        }
+    },
+    brandColors: {
+        blackGray: {
+            main: '#3F3F3F'
+        },
+        brandGray: {
+            main: '#DBDFE8'
+        },
+        brandGreen: {
+            main: '#39DEC8'
+        },
+        brandRed: {
+            main: '#F15053'
+        },
+        brandBlue: {
+            main: '#9CADE5'
+        },
     },
     main: '#272c5B',
     blue: '#0073AC',

@@ -4,48 +4,20 @@ import { withStyles } from '@material-ui/core';
 import { Loader } from 'UI/Loader';
 
 
-const UIKitButton = withStyles({
+const UIKitButton = withStyles(theme => ({
     root: {
         boxShadow: 'none',
         height: 50,
         color: '#fff',
+        backgroundColor: props => theme.brandColors[props.color]?.main || theme.brandColors.brandBlue.main,
         textTransform: 'none',
         fontSize: 18,
         fontWeight: 400,
-        borderRadius: '0',
+        borderRadius: 22,
         padding: '10px 40px',
-        border: '1px solid #FF7271',
         lineHeight: 1.5,
-        backgroundColor: '#FF7271',
-        fontFamily: [
-            'Proxima Nova Rg',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            '"Segoe UI"',
-            'Roboto',
-            '"Helvetica Neue"',
-            'Arial',
-            'sans-serif',
-            '"Apple Color Emoji"',
-            '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"',
-        ].join(','),
         '&:hover': {
-            backgroundColor: '#FF5857',
-            border: '1px solid #FF5857',
-            boxShadow: 'none',
-        },
-        '&:active': {
-            boxShadow: 'none',
-            backgroundColor: '#FF3F3D',
-            border: '1px solid #FF3F3D',
-        },
-        '&:focus': {
-            backgroundColor: '#FF3F3D',
-            border: '1px solid #FF3F3D',
-        },
-        '&:disabled': {
-            color: '#fff'
+            backgroundColor: props => theme.brandColors[props.color]?.main || theme.brandColors.brandBlue.main,     
         }
     },
     disabled: {
@@ -56,8 +28,8 @@ const UIKitButton = withStyles({
     outlined: {
         backgroundColor: 'transparent !important',
         border: '1px solid #FF7271',
-    }
-})(MuiButton);
+    },
+}))(MuiButton);
 
 /**
  * @method Button -Возвращает стилизованную кнопку из UIKit
@@ -72,13 +44,10 @@ const UIKitButton = withStyles({
 const Button = ({
     children,
     loader,
-    width = 'auto',
-    height = '50px',
     ...other
 }) => {
     return (
         <UIKitButton
-            style={{ width, height }}
             {...other}
         >
             {loader ? <Loader /> : children}

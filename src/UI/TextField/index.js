@@ -4,6 +4,7 @@ import { fade, IconButton, makeStyles } from '@material-ui/core';
 import { DateMask, PhoneMask, CodeMask } from 'utils/Masks';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import PropTypes from 'prop-types'
 
 const useStylesReddit = makeStyles((theme) => ({
     root: {
@@ -12,7 +13,7 @@ const useStylesReddit = makeStyles((theme) => ({
         padding: 16,
         height: 54,
         overflow: 'hidden',
-        borderRadius: 'none',
+        borderRadius: 22,
         backgroundColor: '#fff',
         transition: theme.transitions.create(['border-color', 'box-shadow']),
         '&:hover': {},
@@ -20,18 +21,19 @@ const useStylesReddit = makeStyles((theme) => ({
             backgroundColor: '#E8F0FE',
             border: 'none',
         },
-        '&$focused': {
-            backgroundColor: '#fff ',
-            boxShadow: `${fade('#488Bff', 0.25)} 0 0 0 2px `,
-            border: '1px solid #488Bff',
+        '&.Mui-error.Mui-focused': {
+            boxShadow: `${fade(theme.palette.error.main, .2)} 0 0 0 4px`,
         },
-
         '& input': {
             height: 51,
             paddingTop: 10,
             paddingBottom: 10,
             boxSizing: 'border-box',
-            textTransform: props => props.capitalize && 'capitalize'
+            textTransform: props => props.capitalize && 'capitalize',
+            // Если поле ввода пустое и textDecoration = underline, то будет маленькая лишняя полоска
+            '&:not([value=""])': { 
+                textDecoration: props => props.underline && 'underline'
+            }
         },
 
         '& button': {
@@ -40,11 +42,13 @@ const useStylesReddit = makeStyles((theme) => ({
             }
         }
     },
-    focused: {},
+    focused: {
+        boxShadow: `${fade('#3a98ef', 0.2)} 0 0 0 4px `,
+        border: `1px solid ${fade('#3a98ef', .4)}`,
+    },
     error: {
-        background: '#FFDFDF !important',
-        border: '1px solid #FF2F2F !important',
-        margin: 0,
+        background: `${theme.palette.error.light} !important`,
+        border: `1px solid ${theme.palette.error.main} !important`,
     },
     disabled: {
         backgroundColor: '#e1e1e1'
@@ -52,7 +56,8 @@ const useStylesReddit = makeStyles((theme) => ({
 }));
 
 function UIKitTextField(props) {
-    const classes = useStylesReddit({ capitalize: props.capitalize});
+    const { underline, capitalize, inputProps } = props;
+    const classes = useStylesReddit({ capitalize, underline });
 
     return (
         <MuiTextField
@@ -60,7 +65,7 @@ function UIKitTextField(props) {
                 autoComplete: 'off'
             }}
             InputProps={{
-                ...props.iprops,
+                ...inputProps,
                 classes,
                 disableUnderline: true
             }}
@@ -92,6 +97,7 @@ const TextField = ({
     date,
     capitalize,
     type,
+    underline = false,
     ...params
 }) => {
 
@@ -141,14 +147,25 @@ const TextField = ({
     return (
         <UIKitTextField
             {...params}
-            iprops={ips}
+            inputProps={ips}
             data-notempty={empty}
             onBlur={handleBlur}
             data-code={code ?? false}
             type={newType}
             capitalize={capitalize}
+            underline={underline}
         />
     )
 };
+
+TextField.propTypes = {
+    code: PropTypes.any,
+    phoneMask: PropTypes.array,
+    date: PropTypes.object,
+    type: PropTypes.string,
+    capitalize: PropTypes.bool,
+    /** Подчеркивание текста в поле ввода */
+    underline: PropTypes.bool,
+}
 
 export default TextField
