@@ -4,9 +4,7 @@ import money from 'images/treasure.png';
 import finalist from 'images/pixelFace.png';
 import finalistMoney from 'images/coin.png';
 import { useStyles } from './style';
-import { Player, LoadingSpinner } from 'video-react';
 import "video-react/dist/video-react.css";
-import video from 'video/video.mp4'
 import pixelGlasses from 'images/pixelGlasses.svg'
 import CornerPixel from "UI/CornerPixel/CornerPixel";
 import {Hidden} from "@material-ui/core";
@@ -27,19 +25,6 @@ const VideoBlock = () => {
                </span>
             </h3>
 
-            <div className={`${classes.wrapContent} ${classes.smallContent}`}>
-                <div className={classes.video}>
-                    <div className={classes.headingVideo}>
-                        <span className={`${classes.curcle} ${classes.red}`} />
-                        <span className={`${classes.curcle} ${classes.yellow}`}  />
-                        <span className={`${classes.curcle} ${classes.green}`} />
-                    </div>
-
-                    <Player autoPlay={false} src={video} poster={videoBanner} preload={"none"}>
-                        <LoadingSpinner />
-                    </Player>
-                </div>
-            </div>
 
             <div className={classes.result}>
                 <div className={classes.itemResult}>
@@ -95,19 +80,6 @@ const VideoBlock = () => {
                 </div>
             </div>
 
-            <div className={`${classes.wrapContent} ${classes.largeContent}`}>
-                <div className={classes.video}>
-                    <div className={classes.headingVideo}>
-                        <span className={`${classes.curcle} ${classes.red}`} />
-                        <span className={`${classes.curcle} ${classes.yellow}`}  />
-                        <span className={`${classes.curcle} ${classes.green}`} />
-                    </div>
-
-                    <Player autoPlay={false} src={video} poster={videoBanner} preload={"none"}>
-                        <LoadingSpinner />
-                    </Player>
-                </div>
-            </div>
         </div>
     )
 };

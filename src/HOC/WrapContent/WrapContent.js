@@ -1,3 +1,4 @@
+import { Container } from '@material-ui/core';
 import React from 'react';
 import { useStyles } from './style';
 
@@ -5,9 +6,9 @@ const WrapContent = ({ children }) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.wrapContent}>
+        <Container>
             { children }
-        </div>
+        </Container>
     )
 };
 

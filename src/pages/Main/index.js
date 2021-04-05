@@ -3,18 +3,20 @@ import { Fade } from '@material-ui/core';
 import { useMainPageStyles } from './styles'
 import WrapContent from 'HOC/WrapContent/WrapContent';
 import BannerMainPage from 'components/BannerMainPage/BannerMainPage';
-import InCount from 'components/InCount/InCount';
-import YaMap from 'components/YaMap/YaMap';
-import ParticipantSlider from 'components/ParticipantSlider/ParticipantSlider';
-import Challenge from 'components/Challenge/Challenge';
-import CompetitionAndPrizes from 'components/CompetitionAndPrizes/CompetitionAndPrizes';
-import Winners from 'components/Winners/Winners';
-import StarPeople from 'components/StarPeople/StarPeople';
-import VideoBlock from 'components/VideoBlock/VideoBlock';
-import Organizers from 'components/Organizers/Organizers';
 import Feedback from 'components/Feedback/Feedback';
 import FooterMain from 'components/FooterMain/FooterMain';
 import { AuthContext } from 'context/AuthContext/AuthContext';
+import { InfoGeometry } from 'components/InfoGeometry/InfoGeometry';
+import { CreateProjectBanner } from 'components/CreateProjectBanner/CreateProjectBanner';
+import { TexWithPlank } from 'components/TextWithPlank/TexWithPlank';
+import { Chat } from 'components/Chat/Chat';
+import { Months } from 'components/Months/Months';
+import { CurrentStage } from 'components/CurrentStage/CurrentStage';
+import { InfoWithGamepad } from 'components/InfoWithGamepad/InfoWithGamepad';
+import { UntilRegistrationBanner } from 'components/UntilRegistrationBanner/UntilRegistrationBanner';
+import { Directions } from 'components/Directions/Directions';
+import { Prizes } from 'components/Prizes/Prizes';
+import { Supporters } from 'components/Supporters/Supporters';
 
 const Main = () => {
     const classes = useMainPageStyles();
@@ -23,23 +25,26 @@ const Main = () => {
     return (
         <Fade in timeout={800}>
             <div className={classes.background}>
+                <BannerMainPage isAuth={isAuth} />
+
                 <WrapContent>
-                    <BannerMainPage isAuth={isAuth} />
-                    <InCount />
-                    <YaMap />
-                    <ParticipantSlider />
-                    <Challenge />
+                    <InfoGeometry />
                 </WrapContent>
 
-                <CompetitionAndPrizes isAuth={isAuth}/>
+                <CreateProjectBanner />
+                <TexWithPlank />
+                <Chat />
+                <Months />
+                <CurrentStage />
+                <InfoWithGamepad />
+                <UntilRegistrationBanner />
+                <Directions />
+                <Prizes />
+                <Supporters />
 
-               <WrapContent>
-                    <Winners />
-                    <StarPeople />
-                    <VideoBlock />
-                    <Organizers />
+                <WrapContent>
                     <Feedback />
-               </WrapContent>
+                </WrapContent>
 
                 <FooterMain />
             </div>
