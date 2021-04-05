@@ -1,8 +1,8 @@
 import React from 'react';
 import happyStudents from 'images/happyStudents.png'
-import happyStudentsNoStars from 'images/happyStudentsNoStars.png'
+import happyStudentsNoStars from 'images/happyStudentsNoStars.png'/* 
 import pixelPhone from 'images/pixelPhone.svg'
-import pixelGmail from 'images/pixelGmail.png'
+import pixelGmail from 'images/pixelGmail.png' */
 import { useStyles } from './style';
 import {Hidden} from "@material-ui/core";
 
@@ -20,7 +20,7 @@ const Feedback = () => {
                    </div>
                </Hidden>
 
-               <div className={classes.contacts}>
+               {/* <div className={classes.contacts}>
                    <a href="tel:+78003506383" className={classes.textLink}>
                        <Hidden mdDown>
                            <img alt={'телефон'} src={pixelPhone} className={`${classes.feedbackIcon} ${classes.phone}`} />
@@ -38,7 +38,7 @@ const Feedback = () => {
                        help@bolshayaperemena.online
                    </a>
                    <span className={`${classes.title} ${classes.titleBottom}`}>Для вопросов и обращений</span>
-               </div>
+               </div> */}
            </div>
 
             <Hidden smDown>

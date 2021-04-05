@@ -1,108 +1,63 @@
 import { makeStyles } from '@material-ui/core/styles';
-import PixelBackgroundDesktop from 'images/PixelBackgroundDesktop.png';
+import gamepadBackground from 'images/gamepadBackground.png';
 import titleBackground from 'images/titleBackground.png'
-import smallBackground from "images/smallBackground.png";
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
+    wrapper: {
+        backgroundColor: theme.brandColors.blackGray.main,
+        paddingTop: '16px',
+        paddingBottom: '92px',
 
-    smallCloud:{
-        width: 551,
-        position: 'relative',
-        left: 40,
-
-        '& > div > br':{
-            display: 'none',
-            '@media(max-width: 850px)':{
-                display: 'block'
-            }
-        },
-
-        '@media(max-width: 370px)':{
-            background: `url(${smallBackground}) no-repeat center`,
-            width: '254px !important',
-            backgroundSize: 'contain'
-        },
-
-        '& > img':{
-            position: 'absolute',
-
-
-            '@media(max-width: 900px)':{
-                width: '100%',
-                height: 83
-            },
-
-            '@media(max-width: 850px)':{
-                textAlign: 'center',
-                fontSize: 14,
-                height: 86,
-                width: 340,
-                left: 52,
-                top: 5
-            },
-
-            '@media(max-width: 370px)':{
-                display: 'none'
-            }
-        },
-
-        '& div':{
-            padding: 12,
-            fontFamily: 'Inter',
-            fontSize:17,
-            fontWeight: 700,
-            color: '#43508E',
-            height: 91,
-            textAlign: 'right',
-            position: 'relative',
-
-            '@media(max-width: 900px)':{
-                textAlign: 'center',
-                fontSize: 14,
-                height: 88
-            },
-
-            '@media(max-width: 370px)':{
-                textAlign: 'center',
-                fontSize: 11,
-                height: 78
-            }
-
-        },
-        '& kbd':{
-            color: "#FF7271",
-            fontFamily: 'Inter',
-        },
-
-        '@media(max-width: 900px)':{
-            width: 446,
-            left: 0,
-        }
     },
-    bg:{
-        backgroundImage: 'url(images/pixelBG.png)',
-
+    bannerWrapper: {
+        position: 'relative',
     },
     player: {
         '& .video-react-big-play-button': {
             display: 'none'
         }
     },
+    gamepadBackground: {
+        height: 558,
+        width: '100%',
+        position: 'absolute',
+        paddingTop: '78px',
+        top: 0,
+        left: 0
+    },
+    buttonPlank:{
+        display: 'flex',
+        flexDirection :'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        marginTop: '16px',
+    },
+    registrationPlank:{
+        padding: '15px 30px',
+        marginTop: 13,
+        background: theme.brandColors.blackGray.main,
+        display : 'flex',
+        alignItems: 'center',
+        color: 'white',
+        fontSize: 20,
+        '& span':{
+            fontWeight: 700,
+        }
+    },
     banner: {
-        background: `url(${PixelBackgroundDesktop}) no-repeat right center`,
-        height: 559,
+        background: `linear-gradient(180deg, #DBDFE8 0%, #39DEC8 115.08%)`,
+        border: '12px solid rgba(219,223,232,1)',
+        borderRadius: '32px',
+        height: 558,
         padding: '69px 64px',
         display: 'flex',
         position: 'relative',
         marginBottom: 48,
         overflow: 'hidden',
 
-        /*'@media(max-width: 1150px)': {
-            height: 420,
-        },*/
         '@media(max-width: 1060px)': {
             height: 'auto',
-             paddingBottom: 30,
+            paddingBottom: 30,
         },
         '@media(max-width: 960px)': {
             marginTop: 16,
@@ -147,7 +102,7 @@ export const useStyles = makeStyles({
             width: 344
         },
 
-        '@media(max-width: 370px)':{
+        '@media(max-width: 370px)': {
             width: 249,
             height: 153,
             padding: 0,
@@ -159,12 +114,51 @@ export const useStyles = makeStyles({
             backgroundSize: 'contain',
         },
     },
-    bigBreak:{
+    bigBreak: {
         color: '#ff7271'
     },
+    actionBlock: {
+        marginTop: 32,
+
+        '& > h6': {
+            paddingLeft: 13
+        },
+
+        '& button': {
+            width: 256,
+            height: 89,
+
+            '& span': {
+                fontSize: 24
+            }
+        }
+    },
     textContent: {
-        maxWidth: 493,
         marginTop: '-41px',
+
+        '& *': {
+            fontFamily: 'Montserrat'
+        },
+
+        '& h4': {
+            fontWeight: 700,
+            fontSize: 42,
+            color: theme.brandColors.blackGray.main,
+            lineHeight: '42px',
+        },
+        '& h5': {
+            fontWeight: 400,
+            fontSize: 32,
+            color: theme.brandColors.blackGray.main,
+            lineHeight: '42px',
+        },
+
+        '& h6': {
+            fontWeight: 300,
+            fontSize: 22,
+            color: theme.brandColors.blackGray.main,
+            lineHeight: '24px',
+        },
 
         '@media(max-width: 900px)': {
             width: '100%',
@@ -188,49 +182,15 @@ export const useStyles = makeStyles({
         '@media(max-width: 890px)': {
             marginTop: 12
         },
-
-        '& button': {
-            background: '#fff!important',
-            color: '#1b1b1b',
-            fontFamily: 'Inter',
-            fontWeight: 'normal',
-            fontSize: 16,
-            paddingLeft: 0,
-            paddingRight: 0,
-            border: '0!important',
-            transition: 'all .3s',
-
-            '&:hover': {
-                background: '#eee!important',
-                border: 0,
-            }
-        }
-    },
-    subTitle: {
-        fontFamily: 'Inter',
-        fontWeight: 'normal',
-        fontSize: 18,
-        lineHeight: '140%',
-        color: '#FFFFFF',
-        marginTop: 0,
-        marginBottom: 48,
-
-        '@media(max-width: 890px)': {
-            '& br': {
-                display: 'none'
-            }
-        },
-
-        '@media(max-width: 850px)': {
-            marginBottom: 24,
-        }
     },
     imageContent: {
         flexGrow: 1,
-        position: 'relative',
+        position: 'absolute',
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
+        bottom: 0,
+        right: 0,
 
         '@media(max-width: 960px)': {
             alignItems: 'flex-end',
@@ -242,8 +202,6 @@ export const useStyles = makeStyles({
 
         '& img': {
             position: 'relative',
-            bottom: '-8px',
-            right: '159px',
 
             '@media(max-width: 1256px)': {
                 height: 495,
@@ -293,165 +251,47 @@ export const useStyles = makeStyles({
             }*/
         }
     },
-    getCertificate: {
-        height: 123,
-        background: '#5CC0C4',
-        display: 'flex',
-        justifyContent: 'space-between',
-        position: 'relative',
-        paddingLeft: 0,
-        paddingRight: 0,
-
-        '@media(max-width: 938px)': {
-            minHeight: '123px',
-        },
-
-        '@media(max-width: 880px)': {
-            flexWrap: 'wrap',
-            height: 'auto',
-            padding: 32,
-        },
-
+    lightX: {
+        position: 'absolute',
+        left: -45,
+        top: 160,
     },
-    getCertificateContent:{
-        height: '100%',
-        paddingLeft: 74,
-        paddingRight: 26,
+    lightO: {
+        position: 'absolute',
+        left: '50%',
+        top: -15,
+    },
+    lightD: {
+        position: 'absolute',
+        bottom: 72,
+        right: -56,
+    },
+    transparentGeometry: {
         width: '100%',
-        display: 'flex',
-        justifyContent: 'space-between',
-
-
-        '@media(max-width: 880px)': {
-            flexDirection: 'column',
-            alignItems: 'center',
-            paddingLeft: 26
-        },
+        bottom: 0,
+        left: '0',
+        position: 'absolute',
     },
-    certAndText:{
+    countdownPlank:{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-
-        '& span': {
-            fontFamily: 'Inter',
-            fontWeight: 'normal',
-            fontSize: 20,
-            marginLeft: 28,
-            color: '#fff',
-
-            '@media(max-width: 880px)': {
-                width: '100%',
-                marginBottom: 24,
-                fontSize: 18,
-                marginLeft: 0,
-                textAlign: 'center'
-            },
-        },
-
-        '& svg':{
-            '@media(max-width: 938px)': {
-                display: 'none'
-            },
-        },
+        position: 'relative',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        width: '100%',
+        padding: '23px 35px',
+        backgroundColor: '#e1faf7',
+        borderRadius: '25px',
     },
-    certificateButton:{
-        height: '100%',
-        width: '214px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        '& button':{
-            fontFamily: 'Inter',
-            fontWeight: 'normal',
-            border: '0!important',
-            fontSize: 16,
-            background: '#2484FF!important',
-            paddingLeft: 0,
-            paddingRight: 0,
-            color: '#FFFFFF',
-            transition: 'all .3s',
-
-            '&:hover': {
-                background: '#4294FF!important'
-            }
+    countdownIcon:{
+        marginRight: 55,
+    },
+    countdownText:{
+        color: theme.brandColors.blackGray.main,
+        fontSize: 23,
+        fontFamily: 'Montserrat',
+        '& + div':{
+            margin: '0 0 0 auto'
         }
     },
-    btnAndVideo: {
-        display: 'flex',
-        alignItems: 'center',
-        marginTop: '80px',
-
-
-        '@media(max-width: 1220px)': {
-            flexDirection: 'column',
-            alignItems: 'center',
-        },
-
-        '@media(max-width: 900px)': {
-            marginTop: '6px'
-        },
-
-        '@media(max-width: 700px)': {
-            flexDirection: 'column',
-            alignItems: 'center'
-        },
-
-        '& button': {
-            marginRight: 42,
-
-            '@media(max-width: 1220px)': {
-               marginRight: 0,
-            },
-        },
-
-        '& > div':{
-            marginRight: '19px',
-            '@media(max-width: 900px)': {
-                marginBottom: '6px'
-            },
-
-            '@media(max-width: 1220px)': {
-                marginRight: '0',
-            },
-        },
-    },
-    videoHello: {
-        fontFamily: 'Inter',
-        fontWeight: 'normal',
-        fontSize: 16,
-        lineHeight: '110%',
-        color: '#fff',
-        display: 'inline-block',
-        borderBottom: '1px solid rgba(255,255,255,.4)',
-        paddingBottom: 7,
-        cursor: 'pointer',
-
-        '@media(max-width: 1220px)': {
-           marginTop: 22,
-            border: 0,
-        },
-        '@media(max-width:960px)': {
-           marginBottom: 30,
-        },
-        '@media(max-width:700px)': {
-           marginBottom: 0,
-        },
-    },
-    videoIcon:{
-        marginRight: 8
-    },
-    littleCloud:{
-        position: 'relative',
-        right: '-96px',
-
-        '@media(max-width:890px)': {
-            marginTop: 24,
-            right: 0
-        },
-        '@media(max-width:850px)': {
-            maxWidth: 344,
-            width: '100%'
-        },
-    }
-});
+}));

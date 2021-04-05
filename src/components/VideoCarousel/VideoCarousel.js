@@ -3,9 +3,6 @@ import {useStyles} from './style'
 import Slider from 'react-slick'
 import { Player, LoadingSpinner } from 'video-react';
 
-/*import finals from 'video/finals.mp4'
-import mentors from 'video/mentors.mp4'
-import semifinals from 'video/semifinals.mp4'*/
 import {settingsVideos} from "utils/settingsForSliders";
 
 const videos = [

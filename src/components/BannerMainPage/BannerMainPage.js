@@ -1,119 +1,88 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import studentsBanner from 'images/studentsBanner.png';
-import DialogCustom from 'components/DialogCustom';
-import { Player } from 'video-react';
-import "video-react/dist/video-react.css";
-import greeting from 'video/greeting.mp4'
 import { useStyles } from './style';
-import ButtonPixel from "UI/ButtonPixel/ButtonPixel";
-import {PixelCertificate} from "svgComponents/PixelCertificate";
-import play from 'images/play.png'
-import CornerPixelSlice from "UI/CornerPixelSlice/CornerPixelSlice";
-import smallCloudPlank from "images/smallCloudPlank.png";
+import WrapContent from 'HOC/WrapContent/WrapContent';
+import BrandButton from 'UI/BrandButton/BrandButton';
+
+import lightXButton from 'images/lightXButton.png'
+import girl from 'images/redglassesGirl.png';
+import transparentGeometryBanner from 'images/transparentGeometryBanner.png'
+import lightCircleButton from 'images/lightCircleButton.png'
+import lightTriangleButton from 'images/lightTriangleButton.png'
+import coloredLogo from 'images/coloredLogo.png'
+import countdownIcon from 'images/countdownIcon.svg'
+
+import Geometry from 'svgComponents/Geometry';
+import { COUNTDOWN_UNTIL } from 'CONSTANTS';
+import { Countdown } from 'components/Countdown/Countdown';
+
 
 const BannerMainPage = ({ isAuth }) => {
     const classes = useStyles();
     const history = useHistory();
 
-    const [openDialog, setOpenDialog] = useState(false);
 
     return (
-        <div className={classes.bg}>
-            <div className={classes.banner}>
-                <CornerPixelSlice size={'14'} />
-                <div className={classes.textContent}>
-                    <div className={classes.smallCloud} >
-                        <img src={smallCloudPlank} alt={''} />
-                        <div>
-                            Начало регистрации <br/> {' '}
-                            <span>для учеников школ{' '}{' '}{' '}<kbd>26 марта</kbd> в <kbd>17:00</kbd>, </span><br/>
-                            для студентов ссузов {' '}{' '}{' '}<kbd>30 марта</kbd> в <kbd>13:00</kbd>
-                        </div>
-                    </div>
-                    <h4 className={classes.heading}>
-                        <span className={classes.bigBreak} >Конкурс "Большая перемена" </span> —  место, где твоим талантам есть место
-                    </h4>
+        <div className={classes.wrapper}>
 
-                    <div className={classes.btnAndVideo}>
-                        {
-                            isAuth !== 1 ?
-                                <ButtonPixel
-                                    width='211px'
-                                    height='70px'
-                                    colorType={'red'}
-                                    shadowColor={'#582C83'}
-                                    onClick={() => history.push('/auth/signup')}
-                                >
-                                    Присоединиться к сообществу
-                                </ButtonPixel> : null
-                        }
-                        <ButtonPixel
-                            width='211px'
-                            height='70px'
-                            colorType={'violet'}
-                            shadowColor={'#582C83'}
-                            onClick={() => setOpenDialog(true)}
-                        >
-                            <img alt={'play'} src={play} className={classes.videoIcon} />
-                            Видео-приветствие
-                        </ButtonPixel>
-                    </div>
-
-                </div>
-
-                <div className={classes.imageContent}>
-                    <img src={studentsBanner} alt="studentsBanner"/>
-                </div>
+            <div className={classes.gamepadBackground} >
+                <Geometry />
             </div>
 
-            {
-                isAuth !== 1 ?
-                    <div className={classes.getCertificate}>
-                        <CornerPixelSlice size={14} />
-                        <div className={classes.getCertificateContent} >
-                            <div className={classes.certAndText} >
-                                <PixelCertificate />
-                                <span >Для участников конкурса “Большая перемена - 2020”</span>
+            <WrapContent>
+
+                <div className={classes.bannerWrapper}>
+                    <div className={classes.banner} >
+                        <img src={transparentGeometryBanner} alt='' className={classes.transparentGeometry} />
+                        <div className={classes.textContent}>
+                            <img src={coloredLogo} alt='твой ход' className={classes.coloredLogo} />
+
+                            <h4>
+                                Всероссийский <br />
+                                студенческий конкурс.
+                            </h4>
+                            <h5>Здесь нет проигравших</h5>
+
+                            <div className={classes.actionBlock} >
+                                <h6>
+                                    Сделай первый шаг
+                                </h6>
+                                <div className={classes.buttonPlank} >
+                                    <BrandButton
+                                        onClick={() => history.push('/auth/signup')}
+                                    >
+                                        Регистрируйся
+                                    </BrandButton>
+
+                                    <div className={classes.registrationPlank} >
+                                        Старт регистрации:{' '}
+                                        <span>&nbsp;8 апреля</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div className={classes.certificateButton} >
-                                <ButtonPixel
-                                    width='214px'
-                                    height='79px'
-                                    mainColor={'#FEE761'}
-                                    lightColor={'#fff1a3'}
-                                    darkColor={'#ecd031'}
-                                    shadowColor={'#3EA5A9'}
-                                    textColor={'#0373A6'}
-                                    onClick={() => {
-                                        history.push({
-                                            pathname: '/auth/signup',
-                                            state: {
-                                                certificate: true
-                                            }
-                                        })
-                                    }}
-                                >
-                                    Получить сертификат
-                                </ButtonPixel>
-                            </div>
                         </div>
+                    </div>
+                    <div className={classes.imageContent}>
+                        <img src={girl} alt="studentsBanner" />
+                    </div>
 
-                    </div> : null
-            }
+                    <img src={lightXButton} alt='Х' className={classes.lightX} />
+                    <img src={lightCircleButton} alt='О' className={classes.lightO} />
+                    <img src={lightTriangleButton} alt='Д' className={classes.lightD} />
 
-            <DialogCustom
-                widthDialog={1016}
-                openDialog={openDialog}
-                setOpenDialog={setOpenDialog}
-                scroll={'body'}
-                noFullScreen
-            >
-                <Player autoPlay className={classes.player} >
-                    <source src={greeting} />
-                </Player>
-            </DialogCustom>
+                </div>
+
+                <div className={classes.countdownPlank} >
+                    <img src={countdownIcon} alt='' className={classes.countdownIcon} />
+                    <div className={classes.countdownText} >
+                        До конца регистрации осталось:
+                    </div>
+                    <Countdown toDate={COUNTDOWN_UNTIL} />
+                </div>
+            </WrapContent>
+
+
         </div>
     )
 };
