@@ -26,10 +26,6 @@ export const Login = () => {
 
     const history = useHistory();
 
-    const handleForgotClick = () => {
-        history.push('/auth/forgot')
-    };
-
     const handleFieldBlur = e => {
         const { name, value } = e.target;
 

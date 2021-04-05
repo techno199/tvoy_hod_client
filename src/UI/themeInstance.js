@@ -10,6 +10,9 @@ export const theme = responsiveFontSizes(createMuiTheme({
         error: {
             light: '#FFDFDF',
             main: '#F15053'
+        },
+        text: {
+            primary: '#1B1B1B'
         }
     },
     brandColors: {
@@ -26,7 +29,8 @@ export const theme = responsiveFontSizes(createMuiTheme({
             main: '#F15053'
         },
         brandBlue: {
-            main: '#9CADE5'
+            main: '#9CADE5',
+            alternative: '#3a98ef'
         },
     },
     main: '#272c5B',

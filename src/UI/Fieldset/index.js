@@ -1,5 +1,6 @@
 import React from 'react'
 import { useFieldSetStyles } from './style'
+import classnames from 'classnames';
 
 
 /**
@@ -34,13 +35,14 @@ export const Fieldset = ({
     dark,
     noteLink,
     dense,
+    className,
     ...other
 }) => {
 
     const c = useFieldSetStyles({dark, thin,dense});
 
     return (
-        <div className={c.fieldSet} style={other.style || {}}>
+        <div className={classnames(c.fieldSet, className)} style={other.style || {}}>
             {!!title && (
                 <div className={`${c.title} titleFieldSet`} >
                     {title}

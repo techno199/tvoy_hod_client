@@ -29,7 +29,7 @@ export const useFieldSetStyles = makeStyles(theme => ({
         fontSize: props => props.dense ? 16 : 18,
         lineHeight: '22px',
         marginBottom: props => props.dense ? 0 : theme.spacing(2),
-        color: props => props.dark ? 'white' : 'black',
+        color: props => props.dark ? 'white' : theme.palette.text.primary,
     },
     subtitle: {
         marginLeft: theme.spacing(0.5),

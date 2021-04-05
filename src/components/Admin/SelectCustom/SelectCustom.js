@@ -55,7 +55,7 @@ const SelectForFilter = ({options, handleValueSelect, value, readonly, disabled,
                     </React.Fragment>
                 )}
                 onChange={handleValueSelect}
-                getOptionLabel={(option) => option.title}
+                getOptionLabel={(option) => option.title || ''}
                 getOptionSelected={(option, value) => value?.id === option?.id}
                 style={{ width: '100%' }}
                 classes={{

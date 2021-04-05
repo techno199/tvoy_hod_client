@@ -1,6 +1,6 @@
-import {makeStyles} from '@material-ui/core/styles';
+import {fade, makeStyles} from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles(theme => ({
     vpAutocompleteRoot: {
         '& .MuiFormControl-root': {
             margin: 0
@@ -28,15 +28,15 @@ export const useStyles = makeStyles(() => ({
     vp_filedRoot: {
         background: '#fff!important',
         border: '1px solid rgba(113, 119, 132, 0.2)',
-        borderRadius: 10,
+        borderRadius: 22,
         overflow: 'hidden',
-        height: 45,
+        height: 54,
         padding: '0!important',
         paddingRight: '39px!important',
+        transition: 'all 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
 
         '&:hover': {
             background: '#fff',
-            border: props => props.disabled ? '1px solid rgba(113, 119, 132, 0.2)' : '1px solid #7358FF',
         },
 
         '&.Mui-disabled': {
@@ -58,8 +58,8 @@ export const useStyles = makeStyles(() => ({
         }
     },
     vp_focused: {
-        backgroundColor: '#EFEFFF!important',
-        border: `1px solid #7358FF`
+        border: `1px solid ${fade(theme.brandColors.brandBlue.alternative, .4)}`,
+        boxShadow: `${fade(theme.brandColors.brandBlue.alternative, .2)} 0 0 0 4px`
     },
     vp_popper: {
         '& li': {

@@ -5,6 +5,7 @@ import { DateMask, PhoneMask, CodeMask } from 'utils/Masks';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import PropTypes from 'prop-types'
+import { useController } from 'react-hook-form';
 
 const useStylesReddit = makeStyles((theme) => ({
     root: {
@@ -31,7 +32,7 @@ const useStylesReddit = makeStyles((theme) => ({
             boxSizing: 'border-box',
             textTransform: props => props.capitalize && 'capitalize',
             // Если поле ввода пустое и textDecoration = underline, то будет маленькая лишняя полоска
-            '&:not([value=""])': { 
+            '&:not([value=""])': {
                 textDecoration: props => props.underline && 'underline'
             }
         },
@@ -43,8 +44,8 @@ const useStylesReddit = makeStyles((theme) => ({
         }
     },
     focused: {
-        boxShadow: `${fade('#3a98ef', 0.2)} 0 0 0 4px `,
-        border: `1px solid ${fade('#3a98ef', .4)}`,
+        boxShadow: `${fade(theme.brandColors.brandBlue.alternative, 0.2)} 0 0 0 4px `,
+        border: `1px solid ${fade(theme.brandColors.brandBlue.alternative, .4)}`,
     },
     error: {
         background: `${theme.palette.error.light} !important`,
@@ -102,8 +103,7 @@ const TextField = ({
     let ips = {}
 
     const [newType, setNewType] = useState(type || 'text')
-    const [empty, setEmpty] = useState(() => !!params?.value || !!params?.defaultValue)
-
+    const [empty, setEmpty] = useState(() => !!params?.value || !!params?.defaultValue);
 
     const handleAdornClick = () => {
         setNewType((oldType) => {
@@ -144,12 +144,12 @@ const TextField = ({
 
     return (
         <UIKitTextField
-            {...params}
             inputProps={ips}
             data-notempty={empty}
             onBlur={handleBlur}
             data-code={code ?? false}
             type={newType}
+            {...params}
         />
     )
 };
