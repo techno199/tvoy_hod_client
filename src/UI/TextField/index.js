@@ -5,7 +5,8 @@ import { DateMask, PhoneMask, CodeMask } from 'utils/Masks';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import PropTypes from 'prop-types'
-import { useController } from 'react-hook-form';
+import { Fieldset } from 'UI/Fieldset';
+import { FormatBoldOutlined } from '@material-ui/icons';
 
 const useStylesReddit = makeStyles((theme) => ({
     root: {
@@ -36,11 +37,17 @@ const useStylesReddit = makeStyles((theme) => ({
                 textDecoration: props => props.underline && 'underline'
             }
         },
-
         '& button': {
             '@media(max-width: 700px)': {
                 padding: 0
             }
+        },
+        '&~ .MuiFormHelperText-root': {
+            position: 'absolute',
+            bottom: -20,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center'
         }
     },
     focused: {
@@ -93,10 +100,13 @@ function UIKitTextField(props) {
 
 
 const TextField = ({
+    formik,
+    name,
     code,
     phoneMask,
     date,
     type,
+    label,
     ...params
 }) => {
 
@@ -136,25 +146,39 @@ const TextField = ({
     }
 
     const handleBlur = e => {
-        if (params.onBlur) {
-            params.onBlur(e)
-        }
+        params.onBlur && params.onBlur(e);
+        formik?.handleBlur && formik.handleBlur(e);
+
         setEmpty(!!e?.target?.value)
     };
 
     return (
-        <UIKitTextField
-            inputProps={ips}
-            data-notempty={empty}
-            onBlur={handleBlur}
-            data-code={code ?? false}
-            type={newType}
-            {...params}
-        />
+        <Fieldset
+            thin
+            title={label}
+        >
+            <UIKitTextField
+                name={name}
+                value={formik ? formik.values[name] : params.value}
+                onChange={formik ? formik.handleChange : params.onChange}
+                error={formik ? formik.touched[name] && Boolean(formik.errors[name]) : params.error}
+                helperText={formik ? formik.touched[name] && formik.errors[name] : params.helperText}
+                inputProps={ips}
+                type={newType}
+                data-notempty={empty}
+                data-code={code ?? false}
+                onBlur={handleBlur}
+                {...params}
+            />
+        </Fieldset>
     )
 };
 
 TextField.propTypes = {
+    /** Контроль передается формику, если он указан */
+    formik: PropTypes.object,
+    /** Необходимо указать, если используется вместе с `formik` */
+    name: PropTypes.string,
     code: PropTypes.any,
     phoneMask: PropTypes.array,
     date: PropTypes.object,

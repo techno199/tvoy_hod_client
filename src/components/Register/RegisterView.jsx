@@ -1,179 +1,137 @@
-import { Box, FormControl, FormGroup, Grid, makeStyles } from '@material-ui/core'
+import { Box, Grid} from '@material-ui/core'
 import React from 'react'
-import { Fieldset } from 'UI/Fieldset'
 import TextField from 'UI/TextField'
 import Title from 'UI/Title'
 import PropTypes from 'prop-types'
 import SelectCustom from 'components/Admin/SelectCustom/SelectCustom'
 import BrandLink from 'UI/BrandLink/BrandLink'
 import Button from 'UI/Button'
-import { useFormik } from 'formik'
-import { REGISTER_SCHEMA } from './_constants/registerSchema'
-
-const useStyles = makeStyles({
-    fieldset: {
-        marginBottom: 12
-    }
-});
 
 export default function RegisterView(props) {
     const {
-        formData = {},
+        formik,
+        regions = [],
+        universities = [],
         customUniversity,
-        onChange,
-        onCustomUniversityRequest
+        onCustomUniversityRequest,
+        onSubmit
     } = props;
 
-    const {
-        name,
-        surname,
-        email,
-        region,
-        university
-    } = formData;
-
-    const formik = useFormik({
-        initialValues: {
-            name: name.value,
-            surname: surname.value,
-            email: email.value,
-            region: region.value,
-            university: university.value
-        },
-        validationSchema: REGISTER_SCHEMA,
-        onSubmit: values => console.log(values)
-    })
-
-    const classes = useStyles();
-
-    const handleChange = field => e => {
-        onChange && onChange({
-            field,
-            newValue: e.target.value
-        })
-    }
-
     const handleSubmit = e => {
-        console.log(e);
+        console.log(formik)
+        onSubmit && onSubmit(formik.values);
     }
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <Grid container>
-                <Grid item xs={12}>
-                    <Title>Регистрация</Title>
-                </Grid>
+        <Grid container>
+            <Grid item xs={12}>
+                <Title>Регистрация</Title>
+            </Grid>
 
-                <Grid item xs={6}>
-                    <Box marginRight='19px'>
-                        <Fieldset
-                            thin
-                            title='Имя'
-                        >
-                            <TextField
-                                autoFocus
-                                fullWidth
-                                name='name'
-                                value={formik.values.name}
-                                onChange={formik.handleChange}
-                            />
-                        </Fieldset>
-                    </Box>
-                </Grid>
+            <Grid item xs={6}>
+                <Box marginRight='19px'>
+                    <TextField
+                        autoFocus
+                        fullWidth
+                        label='Имя'
+                        name='name'
+                        formik={formik}
+                    />
+                </Box>
+            </Grid>
 
-                <Grid item xs={6}>
-                    <Box marginLeft='19px'>
-                        <Fieldset
-                            thin
-                            title='Фамилия'
-                        >
-                            <TextField
-                                required
-                                fullWidth
-                                name='surname'
-                                value={formik.values.surname}
-                                onChange={formik.handleChange}
-                            />
-                        </Fieldset>
-                    </Box>
-                </Grid>
+            <Grid item xs={6}>
+                <Box marginLeft='19px'>
+                    <TextField
+                        fullWidth
+                        label='Фамилия'
+                        name='surname'
+                        formik={formik}
+                    />
+                </Box>
+            </Grid>
 
-                <Grid item xs={12}>
-                    <Fieldset
-                        thin
-                        title='Адрес электронной почты'
-                    >
-                        <TextField
-                            required
-                            fullWidth
-                            name='email'
-                            type='email'
-                            value={formik.values.email}
-                            onChange={formik.handleChange}
-                        />
-                    </Fieldset>
-                </Grid>
+            <Grid item xs={12}>
+                <TextField
+                    fullWidth
+                    label='Email'
+                    name='email'
+                    type='email'
+                    formik={formik}
+                />
+            </Grid>
 
-                <Grid item xs={12}>
-                    <Fieldset
-                        thin
-                        title='Регион'
-                    >
-                        <SelectCustom
-                            name='region'
-                            options={region.options}
-                            value={formik.values.region}
-                            onChange={formik.handleChange}
-                        />
-                    </Fieldset>
-                </Grid>
+            <Grid item xs={12}>
+                <TextField
+                    fullWidth
+                    label={'Пароль'}
+                    name='password'
+                    type='password'
+                    formik={formik}
+                />
+            </Grid>
 
-                <Grid item xs={12}>
-                    <Fieldset
-                        thin
-                        title={customUniversity ? 'Впишите полное название университета' : 'Университет'}
-                        className={classes.fieldset}
-                    >
-                        {
-                            customUniversity ? (
-                                <TextField
-                                    fullWidth
-                                    required
-                                    value={university.value}
-                                    onChange={handleChange(university)}
-                                />
-                            ) : (
-                                <SelectCustom
-                                    name='university'
-                                    options={university.options}
-                                    value={formik.values.university}
-                                    onChange={formik.handleChange}
-                                />
-                            )
-                        }
-                    </Fieldset>
+            <Grid item xs={12}>
+                <TextField
+                    fullWidth
+                    label='Повторите пароль'
+                    name='passwordRepeat'
+                    type='password'
+                    formik={formik}
+                />
+            </Grid>
 
+            <Grid item xs={12}>
+                <SelectCustom
+                    label='Регион университета'
+                    name='region'
+                    options={regions}
+                    value={formik.values.region}
+                    handleValueSelect={formik.handleChange}
+                />
+            </Grid>
+
+            <Grid item xs={12}>
+                <Box marginBottom='12px'>
                     {
-                        !customUniversity && (
-                            <BrandLink to='#' onClick={onCustomUniversityRequest}>Не нашли своё учебное заведение?</BrandLink>
+                        customUniversity ? (
+                            <TextField
+                                fullWidth
+                                label='Впишите полное название университета'
+                                name='university'
+                                formik={formik}
+                            />
+                        ) : (
+                            <SelectCustom
+                                label='Университет'
+                                name='university'
+                                options={universities}
+                                formik={formik}
+                            />
                         )
                     }
-                </Grid>
+                </Box>
 
-                <Grid item xs={12}>
-                    <Box clone marginTop='27px'>
-                        <Button
-                            fullWidth
-                            type='submit'
-                            shape='rounded'
-                            color='brandGreen'
-                        >
-                            Продолжить
-                    </Button>
-                    </Box>
-                </Grid>
+                {
+                    !customUniversity && (
+                        <BrandLink to='#' onClick={onCustomUniversityRequest}>Не нашли своё учебное заведение?</BrandLink>
+                    )
+                }
             </Grid>
-        </form>
+
+            <Grid item xs={12}>
+                <Box clone marginTop='27px'>
+                    <Button
+                        fullWidth
+                        shape='rounded'
+                        color='brandGreen'
+                        onClick={handleSubmit}
+                    >
+                        Продолжить
+                </Button>
+                </Box>
+            </Grid>
+        </Grid>
     )
 }
 
@@ -184,15 +142,12 @@ const formDataItem = PropTypes.shape({
 })
 
 RegisterView.propTypes = {
-    formData: PropTypes.shape({
-        name: formDataItem,
-        surname: formDataItem,
-        email: formDataItem,
-        region: formDataItem,
-        university: formDataItem
-    }),
+    formik: PropTypes.object.isRequired,
+    regions: PropTypes.array,
+    universities: PropTypes.array,
     /** Активация ручного ввода названия универа */
     customUniversity: PropTypes.bool,
     onChange: PropTypes.func,
     onCustomUniversityRequest: PropTypes.func,
+    onSubmit: PropTypes.func,
 }

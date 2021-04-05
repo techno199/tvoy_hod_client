@@ -1,8 +1,11 @@
-import * as Yup from 'yup';
+import * as yup from 'yup';
 
-export const REGISTER_SCHEMA = Yup.object().shape({
-    firstName: Yup.string()
-        .min(4)
-        .max(50)
-        .required('Поле необходимо заполнить')
+const MAXLENGTH = 'Максимальная длина - 25 символов';
+const REQUIRED = 'Поле необходимо заполнить';
+const EMAIL = 'Введите корректный email'
+
+export const REGISTER_SCHEMA = yup.object().shape({
+    name: yup.string().max(25, MAXLENGTH).required(REQUIRED),
+    surname: yup.string().max(25, MAXLENGTH).required(REQUIRED),
+    email: yup.string().email(EMAIL).required(REQUIRED)
 })

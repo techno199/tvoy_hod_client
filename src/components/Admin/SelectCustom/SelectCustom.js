@@ -6,6 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AnimateLoader from 'svgComponents/AnimateLoader';
 import MaskedInput from 'react-text-mask';
 import { useStyles } from './style';
+import { Fieldset } from 'UI/Fieldset';
 
 function TextMaskCustom(props) {
     const { inputRef, ...other } = props;
@@ -39,7 +40,7 @@ const SelectForFilter = ({options, handleValueSelect, value, readonly, disabled,
     }
 
     return (
-        <>
+        <Fieldset thin title={label}>
             {topLabel ? <p className={classes.label}>{topLabel}</p>: null}
             <Autocomplete
                 filterOptions={async ? (options, _) => options : filterOptions}
@@ -66,7 +67,6 @@ const SelectForFilter = ({options, handleValueSelect, value, readonly, disabled,
                         {...params}
                         error={Boolean(errorData)}
                         placeholder={placeholder}
-                        label={label}
                         variant="filled"
                         margin="dense"//делает ниже
                         onChange={onChangeSearchField ? onChangeSearchField : () => {}}
@@ -101,7 +101,7 @@ const SelectForFilter = ({options, handleValueSelect, value, readonly, disabled,
                     />
                 }
             />
-        </>
+        </Fieldset>
     )
 };
 

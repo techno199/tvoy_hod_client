@@ -1,27 +1,33 @@
+import { useFormik } from 'formik';
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form';
 import RegisterView from './RegisterView'
+import { REGISTER_SCHEMA } from './_constants/registerSchema';
 
 export default function RegisterContainer(props) {
     const [state, setState] = useState(initialState);
 
     const {
-        formData,
         customUniversity
     } = state;
 
-    const { control } = useForm();
-
-    const handleFormDataChange = e => {
-        const { field, newValue } = e;
-    }
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            surname: '',
+            email: '',
+            password: '',
+            passwordRepeat: '',
+            region: '',
+            university: ''
+        },
+        validationSchema: REGISTER_SCHEMA,
+        onSubmit: values => console.log(values)
+    })
 
     return (
         <RegisterView
-            control={control}
-            formData={formData}
+            formik={formik}
             customUniversity={customUniversity}
-            onChange={handleFormDataChange}
             onCustomUniversityRequest={() => setState({ ...state, customUniversity: true })}
             {...props}
         />
@@ -29,24 +35,5 @@ export default function RegisterContainer(props) {
 }
 
 const initialState = {
-    formData: {
-        name: {
-            value: ''
-        },
-        surname: {
-            value: ''
-        },
-        email: {
-            value: ''
-        },
-        region: {
-            options: [],
-            value: ''
-        },
-        university: {
-            options: [],
-            value: ''
-        }
-    },
     customUniversity: false
 }

@@ -45,7 +45,6 @@ export const useStyles = makeStyles(theme => ({
 
         '& input': {
             height: 45,
-            paddingTop: props => props.label ? '12px!important' : '0!important',
             paddingBottom: '0!important',
             paddingLeft: '14px!important',
             lineHeight:'45px',
