@@ -15,7 +15,7 @@ const Footer = () => {
     const { pathname } = useLocation();
 
     const mainPage = () =>  {
-        return ['/', '/contest'].includes(pathname)
+        return ['/'].includes(pathname)
     };
 
     return (
