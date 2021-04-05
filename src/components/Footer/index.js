@@ -21,25 +21,27 @@ const Footer = () => {
     return (
         <div className={c.footer} style={{display: mainPage() ? 'none' : 'flex'}}>
             <Hidden mdDown>
-                <div className={c.sectionFooter}>
-                    <Box clone fontSize='16px'>
-                        <div className={c.title}>Для звонков по России</div>
-                    </Box>
+                <Box clone marginRight='64px'>
+                    <div className={c.sectionFooter}>
+                        <Box clone fontSize='16px'>
+                            <div className={c.title}>Для звонков по России</div>
+                        </Box>
 
-                    <a target='_blank' href={`tel:+7 800 350 63 83`} rel={'noreferrer'} className={c.link}>
-                        +7 800 350 63 83
-                    </a>
+                        <a target='_blank' href={`tel:+7 800 350 63 83`} rel={'noreferrer'} className={c.link}>
+                            +7 800 350 63 83
+                        </a>
 
-                    <Box marginTop='32px'>
-                        <BrandLink
-                            target='_self'
-                            to='/admin/login'
-                            className={classnames(c.subtitleUnderline, c.subtitle)}
-                        >   
-                            Для администратора
-                        </BrandLink>
-                    </Box>
-                </div>
+                        {/* <Box marginTop='32px'>
+                            <BrandLink
+                                target='_self'
+                                to='/admin/login'
+                                className={classnames(c.subtitleUnderline, c.subtitle)}
+                            >   
+                                Для администратора
+                            </BrandLink>
+                        </Box> */}
+                    </div>
+                </Box>
             </Hidden>
 
             <Hidden mdDown>
@@ -64,9 +66,12 @@ const Footer = () => {
                 </div>
             </Hidden>
 
-            <div  className={c.social} >
-                <a target='_blank' rel={'noreferrer'} href={INSTREF} style={{ marginBottom: '5px' }}><InstaIcon /></a>
-                <a target='_blank' rel={'noreferrer'} href={VKREF} style={{ marginBottom: '5px', marginLeft: 16 }}><VKicon /></a>
+            <div className={c.social}>
+                <BrandLink blank to={{ pathname: INSTREF }} ><InstaIcon /></BrandLink>
+
+                <Box clone marginLeft='16px'>
+                    <BrandLink blank to={{ pathname: VKREF }}><VKicon /></BrandLink>
+                </Box>
             </div>
         </div>
     )

@@ -3,12 +3,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames';
 
-const DEFAULT_LINK_COLOR = '#3A98EF';
-
 const useStyles = makeStyles(theme => ({
     root: {
         textDecoration: 'none',
-        color: props => theme.brandColors[props.color]?.main || DEFAULT_LINK_COLOR
+        color: props => theme.brandColors[props.color]?.main || theme.brandColors.brandBlue.alternative
     }
 }))
 
@@ -16,7 +14,8 @@ export default function BrandLink(props) {
     const {
         color,
         className,
-        target = '_blank',
+        blank = false,
+        target,
         ...rest
     } = props;
 
@@ -24,7 +23,7 @@ export default function BrandLink(props) {
 
     return (
         <Link
-            target={target}
+            target={blank ? '_blank' : target}
             className={classnames(className, classes.root)}
             {...rest}
         />

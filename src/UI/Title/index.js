@@ -1,32 +1,14 @@
 import { makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
+import { theme } from 'UI/themeInstance';
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     main: {
-        '@media(max-width: 1280px)': {
-            fontSize: '3em !important'
-        },
-
-
-        '@media(max-width: 1200px)': {
-            fontSize: '2em !important'
-        },
-
-        '@media(max-width: 1024px)': {
-            fontSize: '4em !important'
-        },
-
-        '@media(max-width: 799px)': {
-            fontSize: '2em !important'
-        },
-
-        '@media(max-width: 400px)': {
-            fontSize: '1.5em !important'
-        },
+        color: theme.palette.text.primary
     }
-})
+}))
 
 
 /** Возвращает заголовок из UIKit
@@ -44,7 +26,6 @@ const useStyles = makeStyles({
 
 const Title = ({
     children,
-    color = 'black',
     marginBottom = '16px',
     aside,
     marginTop = '16px',
@@ -68,7 +49,6 @@ const Title = ({
                     fontFamily: 'Inter, sans-serif',
                     fontWeight: 'bold',
                     letterSpacing: '0.03em',
-                    color,
                     fontSize,
                     lineHeight: '39px',
                 }}

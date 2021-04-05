@@ -6,7 +6,7 @@ export const useStyles = makeStyles({
     footer: {
         background: theme.brandColors.blackGray.main,
         width: '100%',
-        height: '169px',
+        height: 169,
         flex: '0 0 auto',
         display: 'flex',
         alignItems: 'center',
@@ -54,18 +54,12 @@ export const useStyles = makeStyles({
         },
     },
     sectionFooter: {
+        height: '100%',
         display: 'flex',
+        padding: '30px 0',
         alignItems: 'flex-start',
         flexDirection: 'column',
         minWidth: 182,
-
-        '&:nth-child(1)': {
-            marginRight: 64,
-        },
-
-        '&:nth-child(2)': {
-            minWidth: 300
-        }
     },
     title: {
         fontFamily: 'Inter',
@@ -92,11 +86,13 @@ export const useStyles = makeStyles({
     },
     social: {
         display: 'flex',
-        alignItems: 'baseline',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        margin: '0 0 0 auto',
-
+        justifyContent: 'flex-end',
+        flex: 1,
+        height: '100%',
+        padding: '30px 0',
+        '& a': {
+            marginTop: 9
+        },
         '@media(max-width: 720px)':{
             display: 'none'
         },
