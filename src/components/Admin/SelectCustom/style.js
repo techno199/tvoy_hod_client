@@ -7,13 +7,23 @@ export const useStyles = makeStyles(theme => ({
         },
 
         '& .MuiFormHelperText-root': {
-            color: '#ff6347',
-            fontSize: 10,
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            bottom: -20,
+            width: '100%',
+            color: theme.palette.error.main,
+            fontSize: 12,
             fontFamily: 'Inter',
             fontWeight: 'normal',
-            paddingLeft: 7,
-            marginLeft: 0,
-            marginRight: 0
+            margin: 0,
+            backgroundColor: '#fff'
+        },
+        '&:not([data-value=""]) .MuiInputBase-root': {
+            backgroundColor: '#E8F0FE',
+            '&:.Mui-focused': {
+                backgroundColor: '#fff'
+            }
         }
     },
     label: {
@@ -26,7 +36,7 @@ export const useStyles = makeStyles(theme => ({
         marginBottom: 10
     },
     vp_filedRoot: {
-        background: '#fff!important',
+        backgroundColor: '#fff',
         border: '1px solid rgba(113, 119, 132, 0.2)',
         borderRadius: 22,
         overflow: 'hidden',
@@ -36,11 +46,12 @@ export const useStyles = makeStyles(theme => ({
         transition: 'all 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
 
         '&:hover': {
-            background: '#fff',
+            backgroundColor: '#fff'
         },
 
         '&.Mui-disabled': {
-            color: '#717784'
+            color: '#717784',
+            backgroundColor: 'rgba(0, 0, 0, 0.12) !important'
         },
 
         '& input': {
@@ -73,7 +84,12 @@ export const useStyles = makeStyles(theme => ({
         }
     },
     vp_errorFiled: {
-        border: '1px solid tomato!important'
+        border: `1px solid ${theme.palette.error.main}`,
+        backgroundColor: `${theme.palette.error.light} !important`,
+        '&.Mui-focused': {
+            boxShadow: `${fade(theme.palette.error.main, .2)} 0 0 0 4px`,
+            backgroundColor: '#fff !important'
+        }
     },
     inputLabelRoot: {
         color: 'rgba(113, 119, 132, 0.5)!important',

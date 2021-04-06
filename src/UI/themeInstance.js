@@ -43,6 +43,7 @@ export const theme = responsiveFontSizes(createMuiTheme({
 
     typography: {
         fontFamily: [
+            'Inter',
             'Proxima Nova Rg',
             '-apple-system',
             'BlinkMacSystemFont',

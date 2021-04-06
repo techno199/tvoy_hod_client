@@ -6,14 +6,32 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import PropTypes from 'prop-types'
 import { Fieldset } from 'UI/Fieldset';
-import { FormatBoldOutlined } from '@material-ui/icons';
+
+const _getTextFieldHeight = props => {
+    switch (props.size) {
+        case 'large':
+            return 69;
+        default:
+            return 54;
+    }
+}
+
+const _getFontSize = props => {
+    switch (props.size) {
+        case 'large':
+            return 24;
+        default:
+            return 16
+    }
+}
 
 const useStylesReddit = makeStyles((theme) => ({
     root: {
         border: '1px solid #e9e9e9',
         verticalAlign: 'middle',
         padding: 16,
-        height: 54,
+        height: _getTextFieldHeight,
+        fontSize: _getFontSize,
         overflow: 'hidden',
         borderRadius: 22,
         backgroundColor: '#fff',
@@ -47,7 +65,9 @@ const useStylesReddit = makeStyles((theme) => ({
             bottom: -20,
             width: '100%',
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            fontFamily: 'Inter',
+            fontSize: 12
         }
     },
     focused: {
@@ -57,6 +77,9 @@ const useStylesReddit = makeStyles((theme) => ({
     error: {
         background: `${theme.palette.error.light} !important`,
         border: `1px solid ${theme.palette.error.main} !important`,
+        '&.Mui-focused': {
+            background: '#fff !important'
+        }
     },
     disabled: {
         backgroundColor: '#e1e1e1'
@@ -65,7 +88,7 @@ const useStylesReddit = makeStyles((theme) => ({
 
 function UIKitTextField(props) {
     const { underline, capitalize, inputProps, ...rest } = props;
-    const classes = useStylesReddit({ capitalize, underline });
+    const classes = useStylesReddit(props);
 
     return (
         <MuiTextField

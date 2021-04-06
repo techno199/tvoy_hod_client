@@ -29,7 +29,26 @@ const filterOptions = createFilterOptions({
     stringify: option => option.title
 });
 
-const SelectForFilter = ({options, handleValueSelect, value, readonly, disabled, errorData, placeholder, noArrow = false, async = false, loadingSearch, onChangeSearchField, topLabel, errorText, label = null, maskInput = null, customOptions}) => {
+const SelectForFilter = ({
+    formik,
+    name,
+    options,
+    value,
+    readonly,
+    disabled,
+    errorData,
+    placeholder,
+    noArrow = false,
+    async = false,
+    loadingSearch,
+    errorText,
+    label = null,
+    maskInput = null,
+    customOptions,
+    handleValueSelect,
+    onChangeSearchField,
+    ...rest
+}) => {
     const classes = useStyles({readonly, disabled, label});
 
     let inputPropsMask = {};
@@ -39,37 +58,48 @@ const SelectForFilter = ({options, handleValueSelect, value, readonly, disabled,
         }
     }
 
+    const handleChange = (e, newValue) => {
+        if (formik) {
+            formik.setFieldValue(name, newValue);
+        } else {
+            handleValueSelect && handleValueSelect(e, newValue);
+        }
+    }
+
     return (
         <Fieldset thin title={label}>
-            {topLabel ? <p className={classes.label}>{topLabel}</p>: null}
             <Autocomplete
+                {...rest}
+                data-value={formik ? formik.values[name] || '' : value || ''}
                 filterOptions={async ? (options, _) => options : filterOptions}
                 popupIcon={!noArrow ? <ExpandMoreIcon /> : null}
                 disabled={disabled}
                 noOptionsText={'Не найдено'}
                 disableClearable
-                value={value}
+                value={formik ? formik.values[name] : value}
                 options={options}
                 renderOption={(option) => (
                     <React.Fragment>
                         {customOptions ? option[customOptions] : option.title}
                     </React.Fragment>
                 )}
-                onChange={handleValueSelect}
+                onChange={handleChange}
                 getOptionLabel={(option) => option.title || ''}
                 getOptionSelected={(option, value) => value?.id === option?.id}
-                style={{ width: '100%' }}
                 classes={{
                     root: classes.vpAutocompleteRoot,
                 }}
                 renderInput={(params) =>
                     <TextField
                         {...params}
-                        error={Boolean(errorData)}
+                        name={name}
+                        error={formik ? Boolean(formik.touched[name] && formik.errors[name]) : errorData}
+                        helperText={formik ? formik.touched[name] && formik.errors[name] : errorText}
                         placeholder={placeholder}
                         variant="filled"
                         margin="dense"//делает ниже
-                        onChange={onChangeSearchField ? onChangeSearchField : () => {}}
+                        onChange={onChangeSearchField}
+                        onBlur={formik && formik.handleBlur}
                         InputLabelProps={{
                             classes: {
                                 root: classes.inputLabelRoot,
@@ -97,7 +127,6 @@ const SelectForFilter = ({options, handleValueSelect, value, readonly, disabled,
                             ...params.inputProps,
                             mask:  maskInput,
                         }}
-                        helperText={errorText}
                     />
                 }
             />

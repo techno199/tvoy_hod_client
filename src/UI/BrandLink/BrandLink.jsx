@@ -7,6 +7,9 @@ const useStyles = makeStyles(theme => ({
     root: {
         textDecoration: 'none',
         color: props => theme.brandColors[props.color]?.main || theme.brandColors.brandBlue.alternative
+    },
+    disabled: {
+        color: '#a4a6ba !important'
     }
 }))
 
@@ -16,6 +19,7 @@ export default function BrandLink(props) {
         className,
         blank = false,
         target,
+        disabled,
         ...rest
     } = props;
 
@@ -24,7 +28,7 @@ export default function BrandLink(props) {
     return (
         <Link
             target={blank ? '_blank' : target}
-            className={classnames(className, classes.root)}
+            className={classnames(className, classes.root, { [classes.disabled]: disabled })}
             {...rest}
         />
     )
