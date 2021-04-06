@@ -44,7 +44,7 @@ const Footer = () => {
                 </Box>
             </Hidden>
 
-            <Hidden mdDown>
+            <Hidden smDown>
                 <div className={c.sectionFooter}>
                     <Box clone fontSize='16px'>
                         <div className={c.title}>Для вопросов и обращений</div>
@@ -66,13 +66,19 @@ const Footer = () => {
                 </div>
             </Hidden>
 
-            <div className={c.social}>
-                <BrandLink blank to={{ pathname: INSTREF }} ><InstaIcon /></BrandLink>
+            <Hidden smDown>
+                <div className={c.social}>
+                    <BrandLink blank to={{ pathname: INSTREF }} ><InstaIcon /></BrandLink>
 
-                <Box clone marginLeft='16px'>
-                    <BrandLink blank to={{ pathname: VKREF }}><VKicon /></BrandLink>
-                </Box>
-            </div>
+                    <Box clone marginLeft='16px'>
+                        <BrandLink blank to={{ pathname: VKREF }}><VKicon /></BrandLink>
+                    </Box>
+                </div>
+            </Hidden>
+
+            <Hidden mdUp>
+                <BrandLink className={c.politics} blank to='/politics.docx'>Политика обработки персональных данных</BrandLink>
+            </Hidden>
         </div>
     )
 };

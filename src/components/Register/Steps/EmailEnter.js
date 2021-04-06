@@ -1,4 +1,4 @@
-import { sendEmailForCode, getRegions, getUniversities } from 'api/AuthApi'
+import { sendEmailForCode, getRegions, getUniversities, postRegistration } from 'api/AuthApi'
 import { useFormik } from 'formik'
 import { doRequest } from 'hooks/doRequest'
 import React, { useEffect, useState } from 'react'

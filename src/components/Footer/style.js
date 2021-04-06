@@ -11,7 +11,10 @@ export const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         padding: '0 88px',
-
+        [theme.breakpoints.down('sm')]: {
+            height: 67,
+            justifyContent: 'center'
+        },
         '@media(max-width: 720px)': {
             height: 67,
             backgroundPositionY: '20px'
@@ -27,31 +30,8 @@ export const useStyles = makeStyles({
     },
     politics: {
         color: 'white',
-        fontSize: '18px',
-        height: '100%',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        paddingLeft: 64,
-
-        '@media(max-width: 1315px)':{
-            paddingLeft: 40,
-        },
-
-        '@media(max-width: 1280px)':{
-            paddingLeft: 0,
-        },
-
-        '@media(max-width: 720px)':{
-            '& a': {
-                textAlign: 'center',
-
-                '&:nth-child(2)': {
-                    display: 'none!important'
-                }
-            }
-        },
+        fontSize: 16,
+        textAlign: 'center'
     },
     sectionFooter: {
         height: '100%',
@@ -96,5 +76,5 @@ export const useStyles = makeStyles({
         '@media(max-width: 720px)':{
             display: 'none'
         },
-    }
+    },
 });

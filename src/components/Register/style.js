@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core";
 export const useRegisterStyles = makeStyles(theme => ({
     registerWrapper:{
         width: '100%',
-        paddingBottom: '11%'
     },
     noSearchScool: {
         fontFamily: 'Proxima Nova Rg',
