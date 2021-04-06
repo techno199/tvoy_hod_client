@@ -19,12 +19,12 @@ export default function RegisterMainStep(props) {
         onCustomUniversityRequest,
         onSubmit
     } = props;
+    
+    const upMd = useMediaQuery(theme => theme.breakpoints.up('md'));
 
     const handleSubmit = e => {
         onSubmit && onSubmit(formik);
     }
-
-    const upMd = useMediaQuery(theme => theme.breakpoints.up('md'));
     
     const handleRegionChange = (e, newValue) => {
         onRegionChange && onRegionChange(newValue);
