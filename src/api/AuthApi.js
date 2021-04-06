@@ -1,6 +1,20 @@
 import { instance } from "./instance"
 
+export const getRegions = async () => {
+    try {
+        return (await instance('/api/region-list')).data;
+    } catch {
+        return [];
+    }
+}
 
+export const getUniversities = async (regionId) => {
+    try {
+        return (await instance(`/api/educational-institutions-from-region/${regionId}`)).data;
+    } catch {
+        return [];
+    }
+}
 
 export const sendEmailForCode = async params => {
     const { email } = params

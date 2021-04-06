@@ -12,6 +12,10 @@ export default function RegisterMainStep(props) {
         regions = [],
         universities = [],
         customUniversity,
+        fetchingForm,
+        fetchingRegions,
+        fetchingUniversities,
+        onRegionChange,
         onCustomUniversityRequest,
         onSubmit
     } = props;
@@ -21,6 +25,10 @@ export default function RegisterMainStep(props) {
     }
 
     const upMd = useMediaQuery(theme => theme.breakpoints.up('md'));
+    
+    const handleRegionChange = (e, newValue) => {
+        onRegionChange && onRegionChange(newValue);
+    }
 
     return (
         <Grid container>
@@ -83,10 +91,13 @@ export default function RegisterMainStep(props) {
 
             <Grid item xs={12}>
                 <SelectCustom
+                    async
+                    loadingSearch={fetchingRegions}
                     label='Регион университета'
                     name='region'
                     options={regions}
                     formik={formik}
+                    handleValueSelect={handleRegionChange}
                 />
             </Grid>
 
@@ -102,6 +113,8 @@ export default function RegisterMainStep(props) {
                             />
                         ) : (
                             <SelectCustom
+                                async
+                                loadingSearch={fetchingUniversities}
                                 disabled={!formik.values.region}
                                 label='Университет'
                                 name='university'
@@ -135,6 +148,7 @@ export default function RegisterMainStep(props) {
                         fullWidth
                         shape='rounded'
                         color='brandGreen'
+                        loader={fetchingForm}
                         onClick={handleSubmit}
                     >
                         Продолжить

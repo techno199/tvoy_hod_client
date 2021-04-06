@@ -182,10 +182,10 @@ const TextField = ({
         >
             <UIKitTextField
                 name={name}
-                value={formik ? formik.values[name] : params.value}
-                onChange={formik ? formik.handleChange : params.onChange}
-                error={formik ? formik.touched[name] && Boolean(formik.errors[name]) : params.error}
-                helperText={formik ? formik.touched[name] && formik.errors[name] : params.helperText}
+                value={params.value || formik?.values[name]}
+                onChange={params.onChange || formik?.handleChange}
+                error={params.error || Boolean(formik.touched[name] && formik.errors[name]) }
+                helperText={params.helperText || formik?.touched[name] && formik?.errors[name]}
                 inputProps={ips}
                 type={newType}
                 data-notempty={empty}

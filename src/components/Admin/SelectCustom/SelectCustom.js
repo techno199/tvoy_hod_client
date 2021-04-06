@@ -59,10 +59,12 @@ const SelectForFilter = ({
     }
 
     const handleChange = (e, newValue) => {
+        if (handleValueSelect) {
+            handleValueSelect && handleValueSelect(e, newValue);
+        }
+        
         if (formik) {
             formik.setFieldValue(name, newValue);
-        } else {
-            handleValueSelect && handleValueSelect(e, newValue);
         }
     }
 

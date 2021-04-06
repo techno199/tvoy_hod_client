@@ -1,88 +1,123 @@
-import { sendEmailForCode } from 'api/AuthApi'
+import { Box, Grid, useMediaQuery } from '@material-ui/core'
+import { sendEmailForCode, getRegions, getUniversities } from 'api/AuthApi'
+import SelectCustom from 'components/Admin/SelectCustom/SelectCustom'
+import { useFormik } from 'formik'
 import { doRequest } from 'hooks/doRequest'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min'
+import BrandLink from 'UI/BrandLink/BrandLink'
 import Button from 'UI/Button'
 import { Fieldset } from 'UI/Fieldset'
 import { SpanLink } from 'UI/SpanLink'
 import TextField from 'UI/TextField'
 import Title from 'UI/Title'
 import { yaTarget } from 'utils/yaTarget';
+import { REGISTER_SCHEMA } from '../_constants/registerSchema'
+import RegisterMainStep from '../_steps/RegisterMainStep'
 
 export const EmailEnter = ({
     saveToRequestData,
     nextStep
 }) => {
-
+    // Старый стейт
     const [email, setEmail] = useState('')
     const [error, setError] = useState(false)
     const [isFetching, setIsFetching] = useState(false)
     const history = useHistory()
     const location = useLocation();
+    // Новый стейт 
+    const [state, setState] = useState({
+        regions: [],
+        universities: [],
+        selectedRegion: null,
+        customUniversity,
+        fetchingRegions: false,
+        fetchingUniversities: false,
+        fetchingForm: false
+    });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const {
+        regions,
+        universities,
+        selectedRegion,
+        customUniversity,
+        fetchingRegions,
+        fetchingUniversities,
+        fetchingForm
+    } = state;
+
+    const handleSubmit = async formik => {
         yaTarget('registration-proceed');
-        setError(false)
+        formik.handleSubmit(formik);
 
-        saveToRequestData({ email: email.toLowerCase() })
-
-        setIsFetching(true)
-
-        const { success } = await doRequest(sendEmailForCode, {email: email.toLowerCase() });
-
-        setIsFetching(false)
-
-        if (success) {
-
-            nextStep()
-        }else{
-            setError(true)
+        if (Object.keys(formik.errors).length === 0) {
+            saveToRequestData(formik.values);
+    
+            setState(state => ({ ...state, fetchingForm: true }));
+    
+            const { success } = await doRequest(sendEmailForCode, {email: email.toLowerCase() });
+    
+            setState(state => ({ ...state, fetchingForm: false }));
+    
+            if (success) {
+                nextStep()
+            }else{
+                setError(true)
+            }
         }
     }
 
-    const handleRedirect = () => history.push('/auth/signin');
+    const getRegionsData = async () => {
+        setState(state => ({ ...state, fetchingRegions: true }));
+        const regions = await getRegions();
+        setState(state => ({ ...state, fetchingRegions: false, regions }));
+    }
 
-    const descriptionText = () => {
-        if(location?.state?.certificate) {
-            return 'Укажите адрес электронной почты, используемый при участии в конкурсе\n "Большая перемена", чтобы получить сертификат'
+    const getUniversitiesData = async (regionId) => {
+        setState(state => ({ ...state, fetchingUniversities: true }));
+        const universities = await getUniversities(regionId);
+        setState(state => ({ ...state, fetchingUniversities: false, universities }));
+    }
+    
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            surname: '',
+            email: '',
+            password: '',
+            passwordConfirmation: '',
+            region: null,
+            university: null
+        },
+        validationSchema: REGISTER_SCHEMA,
+    });
+    
+    const handleRegionChange = region => {
+        setState({ ...state, selectedRegion: region });
+    }
+    
+    useEffect(() => {
+        getRegionsData();
+    }, [])
+
+    useEffect(() => {
+        if (selectedRegion) {
+            getUniversitiesData(selectedRegion.id);
         }
-
-        return 'Укажите адрес электронной почты'
-    };
+    }, [selectedRegion])
 
     return (
-        <form onSubmit={handleSubmit} >
-            <Title marginBottom={'36px'} >
-                {location?.state?.certificate ? 'Получение сертификата' : 'Электронная почта'}
-            </Title>
-
-            <Fieldset
-                title={location?.state?.certificate ? 'Электронная почта' : ''}
-                description={descriptionText()}
-                underfield={!!error && <div>Уже зарегистрированы?&nbsp;<SpanLink onClick={handleRedirect} >Войти</SpanLink></div>}
-            >
-                <TextField
-                    autoFocus
-                    value={email}
-                    name='email'
-                    placeholder=' '
-                    error={error}
-                    required
-                    fullWidth
-                    onChange={(e) => setEmail(e.target.value)}
-                    type='email'
-                />
-            </Fieldset>
-
-            <Button
-                type='submit'
-                width='100%'
-                disabled={email.replace(/\s/gi, '').length < 4 || isFetching}
-                loader={isFetching}
-            >
-                Продолжить
-            </Button>
-        </form>
+        <RegisterMainStep
+            formik={formik}
+            universities={universities}
+            regions={regions}
+            customUniversity={customUniversity}
+            fetchingForm={fetchingForm}
+            fetchingRegions={fetchingRegions}
+            fetchingUniversities={fetchingUniversities}
+            onRegionChange={handleRegionChange}
+            onCustomUniversityRequest={() => setState({...state, customUniversity: true})}
+            onSubmit={handleSubmit}
+        />
     )
 };
